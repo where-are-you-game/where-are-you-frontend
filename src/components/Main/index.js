@@ -34,7 +34,7 @@ const StartBox = styled.div`
 `;
 
 const Title = styled.h1`
-  margin: 0 0 1rem 0;
+  margin: 0 0 3rem 0;
   font-size: 4.2rem;
   line-height: 3rem;
 
@@ -122,7 +122,7 @@ const Door = styled.img`
   align-self: center;
 `;
 
-function index() {
+function Main() {
   return (
     <Wrapper>
       <StartBox>
@@ -132,7 +132,6 @@ function index() {
           <span>you?</span>
         </Title>
         <Input placeholder="Your name" />
-        <Input placeholder="Your friend's name" />
         <Button>
           <LinkButton to="/game/livingroom">GAME START</LinkButton>
         </Button>
@@ -142,4 +141,4 @@ function index() {
   );
 }
 
-export default index;
+export default Main;
