@@ -4,12 +4,12 @@ import AnonymousProBoldWoff from "./AnonymousPro/anonymous-pro-v14-latin-700.wof
 import AnonymousProBoldWoff2 from "./AnonymousPro/anonymous-pro-v14-latin-700.woff2";
 import AnonymousProRegularWoff from "./AnonymousPro/anonymous-pro-v14-latin-regular.woff";
 import AnonymousProRegularWoff2 from "./AnonymousPro/anonymous-pro-v14-latin-regular.woff2";
-import GaeguLightWoff from "./Gaegu/gaegu-v10-latin-300.woff";
-import GaeguLightWoff2 from "./Gaegu/gaegu-v10-latin-300.woff2";
-import GaeguBoldWoff from "./Gaegu/gaegu-v10-latin-700.woff";
-import GaeguBoldWoff2 from "./Gaegu/gaegu-v10-latin-700.woff";
-import GaeguRegularWoff from "./Gaegu/gaegu-v10-latin-regular.woff";
-import GaeguRegularWoff2 from "./Gaegu/gaegu-v10-latin-regular.woff2";
+import GaeguBoldWoff from "./Gaegu/Gaegu-Bold.woff";
+import GaeguBoldWoff2 from "./Gaegu/Gaegu-Bold.woff2";
+import GaeguLightWoff from "./Gaegu/Gaegu-Light.woff";
+import GaeguLightWoff2 from "./Gaegu/Gaegu-Light.woff2";
+import GaeguRegularWoff from "./Gaegu/Gaegu-Regular.woff";
+import GaeguRegularWoff2 from "./Gaegu/Gaegu-Regular.woff2";
 import GoudyBookletterWoff from "./GoudyBookletter1911/goudy-bookletter-1911-v10-latin-regular.woff";
 import GoudyBookletterWoff2 from "./GoudyBookletter1911/goudy-bookletter-1911-v10-latin-regular.woff2";
 
