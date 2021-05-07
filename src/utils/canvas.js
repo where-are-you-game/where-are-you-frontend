@@ -13,18 +13,19 @@ export const drawImage = (context, img, x, y, width, height) => {
   };
 };
 
-export const clickImage = (canvas, objects) => {
+export const clickImage = (canvas, objects, callback) => {
   canvas.addEventListener("click", (event) => {
     const { mouseX, mouseY } = getMousePosition(canvas, event);
 
-    for (const object in objects) {
-      const image = objects[object];
+    for (const image in objects) {
+      const object = objects[image];
 
       if (
-        (mouseX > image.x && mouseX < image.x + image.width)
-        && (mouseY > image.y && mouseY < image.y + image.height)
+        (mouseX > object.x && mouseX < object.x + object.width)
+        && (mouseY > object.y && mouseY < object.y + object.height)
       ) {
-        console.log(image.text);
+        callback(object);
+        return;
       }
     }
   });
