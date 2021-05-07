@@ -1,0 +1,5 @@
+export const SAVE_NAME = "SAVE_PLAYER";
+export const SAVE_CLEARTIME = "SAVE_CLEARTIME";
+
+export const SAVE_PUZZLES = "SAVE_PUZZLES";
+export const SAVE_PLAYER_ANSWER = "SAVE_PLAYER_ANSWER";
