@@ -1,6 +1,6 @@
 import React from "react";
 
-import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Room from "./Room";
@@ -30,23 +30,21 @@ const Wrapper = styled.div`
 
   &::after {
     top: 0;
-    background: ${({ color }) => color};
+    background: ${({ theme, room }) => theme.color[room]};
     transform: rotate(3deg);
   }
 `;
 
-function Game({ color }) {
+function Game() {
+  const { room } = useParams();
+
   return (
-    <Wrapper color={color}>
+    <Wrapper room={room}>
       <Todolist />
-      <Room />
+      <Room room={room} />
       <Textbox text="테스트입니다." />
     </Wrapper>
   );
 }
-
-Game.propTypes = {
-  color: PropTypes.string.isRequired
-};
 
 export default Game;
