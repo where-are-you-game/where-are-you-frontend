@@ -6,6 +6,10 @@ const color = {
   yellow: "#fadb0b",
   black: "#1a1d1a",
   grey: "#bbbbbb",
+  livingroom: "#fcf9e9",
+  kitchen: "#c9effe",
+  bedroom: "#fefbd5",
+  catroom: "#e6fde2",
   background: "#eae7d6"
 };
 
