@@ -22,7 +22,9 @@ function App() {
         <GlobalFonts />
         <Router>
           <Route path="/" exact component={Main} />
-          <Route path="/game/livingroom" component={Game} />
+          <Route path="/game/livingroom">
+            <Game color="#fcf9e9" />
+          </Route>
         </Router>
       </ThemeProvider>
     </Wrapper>
