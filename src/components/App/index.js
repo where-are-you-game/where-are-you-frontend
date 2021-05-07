@@ -1,9 +1,6 @@
 import React from "react";
 
-import {
-  BrowserRouter as Router,
-  Route
-} from "react-router-dom";
+import { Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 
 import GlobalStyles from "../../styles";
@@ -20,10 +17,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <GlobalFonts />
-        <Router>
-          <Route path="/" exact component={Main} />
-          <Route path="/game/:room" component={Game} />
-        </Router>
+        <Route path="/" exact component={Main} />
+        <Route path="/game/:room" component={Game} />
       </ThemeProvider>
     </Wrapper>
   );
