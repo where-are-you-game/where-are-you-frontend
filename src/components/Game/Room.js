@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import { changeTextBox } from "../../actions/game";
 import { showPuzzleModal } from "../../actions/puzzleModal";
+import cursor from "../../assets/common/search_cursor.png";
 import Kitchen from "./Room/Kitchen";
 import Livingroom from "./Room/LivingRoom";
 
@@ -15,6 +16,10 @@ const Wrapper = styled.div`
   position: absolute;
   top: 0;
   z-index: 1;
+
+  &:hover {
+    cursor: url(${cursor}), auto;
+  };
 `;
 
 function Room({ room }) {
