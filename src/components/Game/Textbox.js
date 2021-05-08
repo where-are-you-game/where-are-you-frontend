@@ -1,6 +1,6 @@
 import React from "react";
 
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Text = styled.div`
@@ -11,16 +11,14 @@ const Text = styled.div`
   background: #ffffff;
 `;
 
-function Textbox({ text }) {
+function Textbox() {
+  const text = useSelector(state => state.game.textBox);
+
   return (
     <Text>
       {text}
     </Text>
   );
 }
-
-Textbox.propTypes = {
-  text: PropTypes.string.isRequired
-};
 
 export default Textbox;
