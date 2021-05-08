@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { changePlayerAnswer } from "../../../actions/game";
 import { hidePuzzleModal } from "../../../actions/puzzleModal";
 import Answer from "./Answer";
 import Question from "./Question";
@@ -47,16 +48,24 @@ const Button = styled.button`
 
 function Puzzle() {
   const puzzleModal = useSelector(state => state.puzzleModal);
+  const playerAnswer = useSelector(state => state.game.playerAnswer[puzzleModal.name].answer);
+  const [answer, setAnswer] = useState(playerAnswer);
   const dispatch = useDispatch();
   const modal = useRef();
 
   const closePuzzleModal = () => {
     dispatch(hidePuzzleModal());
+    dispatch(changePlayerAnswer(puzzleModal.name, answer));
   };
 
   const clickModalOutside = (event) => {
     if (!modal.current || modal.current.contains(event.target)) return;
     closePuzzleModal();
+  };
+
+  const handleAnswer = (event) => {
+    const { value } = event.target;
+    setAnswer(value);
   };
 
   return (
@@ -73,6 +82,8 @@ function Puzzle() {
           content={puzzleModal.content}
         />
         <Answer
+          playerAnswer={answer}
+          handleAnswer={handleAnswer}
           style={puzzleModal.style}
           cssBefore={puzzleModal.cssBefore}
           cssAfter={puzzleModal.cssAfter}

@@ -10,6 +10,9 @@ const Output = styled.div`
   ${props => props.ouputStyle};
   grid-column: 2 / 3;
   grid-row: 1 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #fcf9e9;
 `;
 
@@ -59,11 +62,13 @@ const Label = styled.span`
 
 function Answer(props) {
   const {
-    output,
+    playerAnswer,
+    handleAnswer,
     style,
     cssBefore,
     cssAfter,
-    markup
+    markup,
+    output
   } = props;
 
   return (
@@ -75,7 +80,11 @@ function Answer(props) {
         <Label color="red">CSS</Label>
         <Numbers />
         <Pre>{cssBefore}</Pre>
-        <StyleInput placeholder="/* Type style */" />
+        <StyleInput
+          placeholder="/* Type style */"
+          onChange={handleAnswer}
+          value={playerAnswer}
+        />
         <Pre>{cssAfter}</Pre>
       </Style>
       <Markup>
@@ -88,6 +97,8 @@ function Answer(props) {
 }
 
 Answer.propTypes = {
+  playerAnswer: PropTypes.string.isRequired,
+  handleAnswer: PropTypes.func.isRequired,
   style: PropTypes.string.isRequired,
   cssBefore: PropTypes.string.isRequired,
   cssAfter: PropTypes.string.isRequired,
