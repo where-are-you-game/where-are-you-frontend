@@ -1,8 +1,11 @@
 import React from "react";
 
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { changeTextBox } from "../../actions/game";
+import { showPuzzleModal } from "../../actions/puzzleModal";
 import Kitchen from "./Room/Kitchen";
 import Livingroom from "./Room/LivingRoom";
 
@@ -15,12 +18,23 @@ const Wrapper = styled.div`
 `;
 
 function Room({ room }) {
+  const puzzles = useSelector((state) => state.puzzle.byName);
+  const dispatch = useDispatch();
+
+  const showPuzzle = (object) => {
+    if (object.text) {
+      dispatch(changeTextBox(object.text));
+    } else {
+      dispatch(showPuzzleModal(puzzles[object.puzzle]));
+    }
+  };
+
   const renderRoom = (room) => {
     switch (room) {
       case "livingroom":
-        return <Livingroom />;
+        return <Livingroom showPuzzle={showPuzzle} />;
       case "kitchen":
-        return <Kitchen />;
+        return <Kitchen showPuzzle={showPuzzle} />;
       default:
         return <Livingroom />;
     }

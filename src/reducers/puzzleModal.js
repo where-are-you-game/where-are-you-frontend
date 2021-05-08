@@ -3,6 +3,7 @@ import produce from "immer";
 import * as type from "../constants/actionTypes";
 
 const initialState = {
+  name: "",
   title: "",
   content: "",
   style: "",
@@ -18,6 +19,7 @@ const puzzleModal = (state = initialState, action) => {
     case type.SHOW_PUZZLE_MODAL:
       return produce(state, (draft) => {
         const {
+          name,
           title,
           content,
           style,
@@ -27,6 +29,7 @@ const puzzleModal = (state = initialState, action) => {
           output
         } = action.puzzle;
 
+        draft.name = name;
         draft.title = title;
         draft.content = content;
         draft.style = style;
