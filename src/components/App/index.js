@@ -32,7 +32,9 @@ function App() {
       } catch (err) {
         console.log(err);
       } finally {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2300);
       }
     };
 
@@ -41,16 +43,18 @@ function App() {
 
   return (
     <Wrapper>
-      {isLoading
-        ? <Loading />
-        : (
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             <GlobalFonts />
-            <Route path="/" exact component={Main} />
-            <Route path="/game/:room" component={Game} />
+            {isLoading
+              ? <Loading />
+              : (
+                <>
+                  <Route path="/" exact component={Main} />
+                  <Route path="/game/:room" component={Game} />
+                </>
+              )}
           </ThemeProvider>
-        )}
     </Wrapper>
   );
 }
