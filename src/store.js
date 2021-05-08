@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
+import { persistStore } from "redux-persist";
 
 import reducer from "./reducers";
 
@@ -9,6 +10,7 @@ if (process.env.NODE_ENV !== "production") {
   middleware.push(createLogger());
 }
 
-const store = createStore(reducer, applyMiddleware(...middleware));
+export const store = createStore(reducer, applyMiddleware(...middleware));
+export const persistor = persistStore(store);
 
-export default store;
+export default { store, persistor };

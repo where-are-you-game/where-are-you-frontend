@@ -7,6 +7,12 @@ import player from "./player";
 import puzzle from "./puzzle";
 import puzzleModal from "./puzzleModal";
 
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["player", "game"]
+};
+
 const rootReducer = combineReducers({
   player,
   game,
@@ -14,4 +20,4 @@ const rootReducer = combineReducers({
   puzzleModal
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
