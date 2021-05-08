@@ -4,10 +4,12 @@ import storage from "redux-persist/lib/storage";
 
 import game from "./game";
 import player from "./player";
+import puzzleModal from "./puzzleModal";
 
 const rootReducer = combineReducers({
   player,
-  game
+  game,
+  puzzleModal
 });
 
 export default rootReducer;

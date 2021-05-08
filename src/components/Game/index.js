@@ -1,8 +1,10 @@
 import React from "react";
 
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import Puzzle from "./Puzzle";
 import Room from "./Room";
 import Textbox from "./Textbox";
 import Todolist from "./Todolist";
@@ -36,14 +38,20 @@ const Wrapper = styled.div`
 `;
 
 function Game() {
+  const puzzleModal = useSelector(state => state.puzzleModal);
   const { room } = useParams();
 
   return (
-    <Wrapper room={room}>
-      <Todolist />
-      <Room room={room} />
-      <Textbox text="테스트입니다." />
-    </Wrapper>
+    <>
+      <Wrapper room={room}>
+        <Todolist />
+        <Room room={room} />
+        <Textbox />
+      </Wrapper>
+      {puzzleModal.isVisible
+        && <Puzzle />
+      }
+    </>
   );
 }
 
