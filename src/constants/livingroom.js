@@ -29,7 +29,7 @@ const LIVINGROOM_OBJECT = {
     y: 20,
     width: 400,
     height: 213,
-    text: "액자"
+    puzzle: "puzzle3"
   },
   letter: {
     src: letter,
@@ -37,8 +37,7 @@ const LIVINGROOM_OBJECT = {
     y: 390,
     width: 150,
     height: 39,
-    text: "편지",
-    quiz: 1
+    puzzle: "puzzle1"
   },
   plant: {
     src: plant,
@@ -54,7 +53,7 @@ const LIVINGROOM_OBJECT = {
     y: 250,
     width: 400,
     height: 150,
-    text: "소파"
+    puzzle: "puzzle2"
   },
   table: {
     src: table,
