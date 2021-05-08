@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useLayoutEffect } from "react";
 
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
@@ -70,10 +70,16 @@ function Answer(props) {
     markup,
     output
   } = props;
+  const outputRef = useRef();
+
+  useLayoutEffect(() => {
+    const selectedElement = outputRef.current.querySelector(".selected");
+    selectedElement.style = playerAnswer;
+  }, [playerAnswer]);
 
   return (
     <>
-      <Output ouputStyle={style}>
+      <Output ref={outputRef} ouputStyle={style}>
         {parse(output)}
       </Output>
       <Style>
