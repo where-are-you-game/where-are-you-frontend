@@ -5,7 +5,7 @@ import PLAYER_ANSWER from "../constants/puzzle";
 
 const initialState = {
   playerAnswer: PLAYER_ANSWER,
-  textBox: "",
+  textBox: "테이블 위에 편지가 있다. 누가 쓴 거지? 읽어봐야겠다.",
   error: null
 };
 
