@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { changePlayerPassword, solvePassword } from "../../../actions/game";
 import lock from "../../../assets/common/lock_locked.png";
 import lockUnlocked from "../../../assets/common/lock_unlocked.png";
-import CloseButton from "../Shared/ModalCloseButton";
+import CloseButton from "../../Shared/ModalCloseButton";
 
 const Backdrop = styled.div`
   width: 100vw;
