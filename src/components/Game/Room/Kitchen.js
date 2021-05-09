@@ -28,4 +28,3 @@ Kitchen.propTypes = {
 };
 
 export default Kitchen;
-
