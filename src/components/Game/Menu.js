@@ -57,11 +57,11 @@ const Button = styled(Link)`
   }
 `;
 
-function Menu({ hideMenu }) {
+function Menu({ showMenu }) {
   const option = useRef();
 
   const closeMenu = () => {
-    hideMenu(false);
+    showMenu(false);
   };
 
   const clickOptionOutside = (event) => {
@@ -96,7 +96,7 @@ function Menu({ hideMenu }) {
 }
 
 Menu.propTypes = {
-  hideMenu: PropTypes.func.isRequired
+  showMenu: PropTypes.func.isRequired
 };
 
 export default Menu;
