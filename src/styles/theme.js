@@ -16,13 +16,13 @@ const color = {
 const margin = {
   small: "0.5rem",
   base: "1rem",
-  bigger: "1.5rem"
+  big: "1.5rem"
 };
 
 const padding = {
   small: "0.5rem",
   base: "1rem",
-  bigger: "1.5rem"
+  big: "1.5rem"
 };
 
 const theme = {
