@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { changePlayerPassword, solvePassword } from "../../../actions/game";
 import lock from "../../../assets/common/lock_locked.png";
 import lockUnlocked from "../../../assets/common/lock_unlocked.png";
+import CloseButton from "../Shared/ModalCloseButton";
 
 const Backdrop = styled.div`
   width: 100vw;
@@ -108,6 +109,12 @@ function Lock({ name, password, showLock }) {
   return (
     <Backdrop onClick={clickLockOutside}>
       <Wrapper ref={lockRef}>
+        <CloseButton
+          title="Close"
+          top="-30px"
+          closeModal={closeLock}
+          color="#f8a507"
+        />
         <Title>비밀번호</Title>
         {isCorrect
           ? (
