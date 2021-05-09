@@ -1,10 +1,25 @@
 import produce from "immer";
 
 import * as type from "../constants/actionTypes";
-import PLAYER_ANSWER from "../constants/puzzle";
+
+const makeAnswer = (name, count) => {
+  const result = {};
+  for (let i = 1; i <= count; i++) {
+    result[`${name}${i}`] = {
+      answer: ""
+    };
+
+    if (name === "password") {
+      result[`${name}${i}`].isUnlocked = false;
+    }
+  }
+
+  return result;
+};
 
 const initialState = {
-  playerAnswer: PLAYER_ANSWER,
+  playerAnswer: makeAnswer("puzzle", 14),
+  playerPassword: makeAnswer("password", 3),
   textBox: "테이블 위에 편지가 있다. 누가 쓴 거지? 읽어봐야겠다.",
   error: null
 };
@@ -18,6 +33,14 @@ const game = (state = initialState, action) => {
     case type.CHANGE_PLAYER_ANSWER:
       return produce(state, (draft) => {
         draft.playerAnswer[action.puzzleName].answer = action.answer;
+      });
+    case type.CHANGE_PLAYER_PASSWORD:
+      return produce(state, (draft) => {
+        draft.playerPassword[action.passwordName].answer = action.answer;
+      });
+    case type.SOLVE_PASSWORD:
+      return produce(state, (draft) => {
+        draft.playerPassword[action.passwordName].isUnlocked = true;
       });
     default:
       return state;

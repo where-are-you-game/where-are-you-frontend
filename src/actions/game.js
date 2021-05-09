@@ -10,3 +10,14 @@ export const changePlayerAnswer = (puzzleName, answer) => ({
   puzzleName,
   answer
 });
+
+export const changePlayerPassword = (passwordName, answer) => ({
+  type: type.CHANGE_PLAYER_PASSWORD,
+  passwordName,
+  answer
+});
+
+export const solvePassword = (passwordName) => ({
+  type: type.SOLVE_PASSWORD,
+  passwordName
+});
