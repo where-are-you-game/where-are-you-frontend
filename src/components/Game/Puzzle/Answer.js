@@ -23,13 +23,14 @@ const Style = styled.div`
   font-size: 16px;
 `;
 
-const StyleInput = styled.input`
+const StyleTextarea = styled.textarea`
   width: calc(100% - 43px - 0.5rem);
-  height: 24px;
+  height: 95px;
   margin: 0 0 0 43px;
   padding: 8px;
   display: block;
   font-family: "Anonymous Pro";
+  resize: none;
 
   &::placeholder {
     color: #bbbbbb;
@@ -73,8 +74,11 @@ function Answer(props) {
   const outputRef = useRef();
 
   useLayoutEffect(() => {
-    const selectedElement = outputRef.current.querySelector(".selected");
-    selectedElement.style = playerAnswer;
+    const selectedElements = outputRef.current.querySelectorAll(".selected");
+
+    for (let i =0; i < selectedElements.length; i++) {
+      selectedElements[i].style = playerAnswer;
+    }
   }, [playerAnswer]);
 
   return (
@@ -86,7 +90,7 @@ function Answer(props) {
         <Label color="red">CSS</Label>
         <Numbers />
         <Pre>{cssBefore}</Pre>
-        <StyleInput
+        <StyleTextarea
           placeholder="/* Type style */"
           onChange={handleAnswer}
           value={playerAnswer}
