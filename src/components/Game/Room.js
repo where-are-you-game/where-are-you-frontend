@@ -22,16 +22,27 @@ const Wrapper = styled.div`
   };
 `;
 
-function Room({ room }) {
+function Room({ room, showLock }) {
   const puzzles = useSelector((state) => state.puzzle.byName);
+  const passwords = useSelector((state) => state.password.byName);
+  const playerPassword = useSelector((state) => state.game.playerPassword);
   const dispatch = useDispatch();
 
-  const showPuzzle = (object) => {
-    if (object.text) {
-      dispatch(changeTextBox(object.text));
-    } else {
-      dispatch(showPuzzleModal(puzzles[object.puzzle]));
+  const showPuzzle = (image) => {
+    if (image.text) {
+      dispatch(changeTextBox(image.text));
+      return;
     }
+
+    if (image.password) {
+      if (playerPassword[image.password].isUnlocked === false) {
+        const { name, password } = passwords[image.password];
+        showLock({ name, password });
+        return;
+      }
+    }
+
+    dispatch(showPuzzleModal(puzzles[image.puzzle]));
   };
 
   const renderRoom = (room) => {
@@ -53,7 +64,8 @@ function Room({ room }) {
 }
 
 Room.propTypes = {
-  room: PropTypes.string.isRequired
+  room: PropTypes.string.isRequired,
+  showLock: PropTypes.func.isRequired
 };
 
 export default Room;

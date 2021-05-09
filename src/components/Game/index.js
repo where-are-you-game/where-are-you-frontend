@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import configIcon from "../../assets/common/config_icon.png";
+import Lock from "./Lock";
 import Menu from "./Menu";
 import Puzzle from "./Puzzle";
 import Room from "./Room";
@@ -57,22 +58,41 @@ const MenuButton = styled.button`
 
 function Game() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+  const [isLockVisible, setIsLockVisible] = useState(false);
+  const [lockInfo, setLockInfo] = useState(null);
+
   const puzzleModal = useSelector(state => state.puzzleModal);
   const { room } = useParams();
+
+  const showLock = (lockInfo) => {
+    setLockInfo(lockInfo);
+    setIsLockVisible(true);
+  };
 
   return (
     <>
       <Wrapper room={room}>
         <Todolist />
-        <Room room={room} />
+        <Room
+          room={room}
+          showLock={showLock}
+        />
         <Textbox />
         <MenuButton
           type="button"
           onClick={() => setIsMenuVisible(!isMenuVisible)}
         />
       </Wrapper>
+      {isLockVisible
+        && (
+            <Lock
+              name={lockInfo.name}
+              password={lockInfo.password}
+              showLock={setIsLockVisible}
+            />
+          )}
       {isMenuVisible
-        && <Menu hideMenu={setIsMenuVisible} />}
+        && <Menu showMenu={setIsMenuVisible} />}
       {puzzleModal.isVisible
         && <Puzzle />}
     </>
