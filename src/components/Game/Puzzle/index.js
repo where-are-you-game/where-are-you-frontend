@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { changePlayerAnswer } from "../../../actions/game";
 import { hidePuzzleModal } from "../../../actions/puzzleModal";
+import CloseButton from "../../Shared/ModalCloseButton";
 import Answer from "./Answer";
 import Question from "./Question";
 
@@ -36,16 +37,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Button = styled.button`
-  width: 70px;
-  position: absolute;
-  top: 0;
-  right: -70px;
-  background: ${({ theme }) => theme.color.orange};
-  border: none;
-  color: #ffffff;
-`;
-
 function Puzzle() {
   const puzzleModal = useSelector(state => state.puzzleModal);
   const playerAnswer = useSelector(state => state.game.playerAnswer[puzzleModal.name].answer);
@@ -71,12 +62,11 @@ function Puzzle() {
   return (
     <Backdrop onClick={clickModalOutside}>
       <Wrapper ref={modal}>
-        <Button
-          type="button"
-          onClick={closePuzzleModal}
-        >
-          Close
-        </Button>
+        <CloseButton
+          title="Close"
+          right="-70px"
+          closeModal={closePuzzleModal}
+        />
         <Question
           title={puzzleModal.title}
           content={puzzleModal.content}
