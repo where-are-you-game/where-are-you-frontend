@@ -1,5 +1,6 @@
 import carpet from "../assets/kitchen/carpet.png";
 import counter from "../assets/kitchen/counter.png";
+import cuttingBoard from "../assets/kitchen/cutting_board.png";
 import fridge from "../assets/kitchen/fridge.png";
 import milk from "../assets/kitchen/milk.png";
 import sandwich from "../assets/kitchen/sandwich.png";
@@ -15,7 +16,8 @@ const KITCHEN_OBJECTS = [
     y: 50,
     width: 184,
     height: 361,
-    text: "냉장고."
+    password: "password1",
+    puzzle: "puzzle7"
   },
   {
     object: "window",
@@ -25,7 +27,7 @@ const KITCHEN_OBJECTS = [
     y: 30,
     width: 237,
     height: 151,
-    text: "창문"
+    text: "커텐을 열었더니 거리를 지나다니는 사람들이 보인다."
   },
   {
     object: "counter",
@@ -34,8 +36,17 @@ const KITCHEN_OBJECTS = [
     y: 124,
     width: 477,
     height: 287,
-    text: "카운터",
-    overlayObjects: ["milk", "table", "sandwich"]
+    puzzle: "puzzle6",
+    overlayObjects: ["milk", "table", "sandwich", "cuttingBoard"]
+  },
+  {
+    object: "cuttingBoard",
+    src: cuttingBoard,
+    x: 500,
+    y: 190,
+    width: 125,
+    height: 38,
+    puzzle: "puzzle5"
   },
   {
     object: "carpet",
@@ -44,7 +55,7 @@ const KITCHEN_OBJECTS = [
     y: 430,
     width: 379,
     height: 126,
-    text: "카펫"
+    text: "소용돌이 모양 카펫이다. 오래 쳐다보면 어지럽다."
   },
   {
     object: "table",
@@ -53,7 +64,7 @@ const KITCHEN_OBJECTS = [
     y: 360,
     width: 418,
     height: 241,
-    text: "테이블",
+    text: "파란색 냉장고와 노란색 식탁의 조합이라니. 누가 고른 색이더라?",
     overlayObjects: ["milk", "sandwich"]
   },
   {
@@ -63,7 +74,7 @@ const KITCHEN_OBJECTS = [
     y: 270,
     width: 67,
     height: 147,
-    text: "우유"
+    text: "샌드위치랑 같이 먹으면 더 맛있는 우유. 하지만 초코 우유가 더 맛있다."
   },
   {
     object: "sandwich",
@@ -72,7 +83,7 @@ const KITCHEN_OBJECTS = [
     y: 350,
     width: 170,
     height: 90,
-    text: "샌드위치"
+    puzzle: "puzzle4"
   }
 ];
 
