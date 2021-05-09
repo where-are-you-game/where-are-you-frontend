@@ -9,3 +9,13 @@ export const fetchPuzzles = async () => {
 
   return response;
 };
+
+export const fetchPasswords = async () => {
+  const response = await fetch(`${API_URL}/game/passwords`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  return response;
+};

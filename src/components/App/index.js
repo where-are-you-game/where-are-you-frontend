@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 
+import { savePasswords } from "../../actions/password";
 import { savePuzzles } from "../../actions/puzzle";
-import { fetchPuzzles } from "../../api";
+import { fetchPuzzles, fetchPasswords } from "../../api";
 import GlobalStyles from "../../styles";
 import GlobalFonts from "../../styles/fonts";
 import theme from "../../styles/theme";
@@ -19,42 +20,48 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
+  const fetchData = async (apiCallback, dispatchAction) => {
+    const response = await apiCallback();
+
+    if (response.status === 200) {
+      const { data } = await response.json();
+      dispatch(dispatchAction(data));
+    }
+  };
+
+  const getPuzzlesAndPasswords = async () => {
+    try {
+      setIsLoading(true);
+
+      await fetchData(fetchPuzzles, savePuzzles);
+      await fetchData(fetchPasswords, savePasswords);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2300);
+    }
+  };
+
   useEffect(() => {
-    const getPuzzles = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetchPuzzles();
-
-        if (response.status === 200) {
-          const { data } = await response.json();
-          dispatch(savePuzzles(data));
-        }
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2300);
-      }
-    };
-
-    getPuzzles();
+    getPuzzlesAndPasswords();
   }, []);
 
   return (
     <Wrapper>
-          <ThemeProvider theme={theme}>
-            <GlobalStyles />
-            <GlobalFonts />
-            {isLoading
-              ? <Loading />
-              : (
-                <>
-                  <Route path="/" exact component={Main} />
-                  <Route path="/game/:room" component={Game} />
-                </>
-              )}
-          </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <GlobalFonts />
+        {isLoading
+          ? <Loading />
+          : (
+            <>
+              <Route path="/" exact component={Main} />
+              <Route path="/game/:room" component={Game} />
+            </>
+          )}
+      </ThemeProvider>
     </Wrapper>
   );
 }
