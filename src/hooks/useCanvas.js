@@ -12,7 +12,7 @@ const useCanvas = (canvasRef, images, showPuzzle) => {
     }
 
     clickImage(canvas, context, images, showPuzzle);
-  }, []);
+  }, [showPuzzle]);
 };
 
 export default useCanvas;

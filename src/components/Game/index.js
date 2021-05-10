@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import configIcon from "../../assets/common/config_icon.png";
+import { ModalContext } from "../../contexts/ModalContext";
 import IconButton from "../Shared/IconButton";
-import Lock from "./Lock";
 import Menu from "./Menu";
 import Music from "./Music";
 import Puzzle from "./Puzzle";
@@ -43,17 +43,10 @@ const Wrapper = styled.div`
 `;
 
 function Game() {
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [isLockVisible, setIsLockVisible] = useState(false);
-  const [lockInfo, setLockInfo] = useState(null);
+  const { handleModal } = useContext(ModalContext);
 
   const puzzleModal = useSelector(state => state.puzzleModal);
   const { room } = useParams();
-
-  const showLock = (lockInfo) => {
-    setLockInfo(lockInfo);
-    setIsLockVisible(true);
-  };
 
   return (
     <>
@@ -61,27 +54,16 @@ function Game() {
         <TodoList />
         <Room
           room={room}
-          showLock={showLock}
         />
         <TextBox />
         <IconButton
           type="button"
           icon={configIcon}
           top="0px"
-          handleClick={() => setIsMenuVisible(!isMenuVisible)}
+          handleClick={() => handleModal(<Menu />)}
         />
         <Music />
       </Wrapper>
-      {isLockVisible
-        && (
-            <Lock
-              name={lockInfo.name}
-              password={lockInfo.password}
-              showLock={setIsLockVisible}
-            />
-          )}
-      {isMenuVisible
-        && <Menu showMenu={setIsMenuVisible} />}
       {puzzleModal.isVisible
         && <Puzzle />}
     </>

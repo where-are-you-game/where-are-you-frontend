@@ -1,36 +1,22 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useContext } from "react";
 
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { changePlayerPassword, solvePassword } from "../../../actions/game";
 import lock from "../../../assets/common/lock_locked.png";
 import lockUnlocked from "../../../assets/common/lock_unlocked.png";
-import CloseButton from "../../Shared/ModalCloseButton";
+import { ModalContext } from "../../../contexts/ModalContext";
 
-const Backdrop = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.4);
-`;
-
-const Wrapper = styled.div`
+const Content = styled.div`
   width: 300px;
   height: auto;
   padding: ${({ theme }) => theme.padding.big};
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  background: #ffffff;
+  justify-content: center;
 `;
 
 const Title = styled.p`
@@ -74,30 +60,22 @@ const Result = styled.p`
   font-size: 1rem;
 `;
 
-function Lock({ name, password, showLock }) {
+function Lock({ name, password }) {
   const [isCorrect, setIsCorrect] = useState(false);
-  const [answer, setAnswer] = useState("");
   const [result, setResult] = useState(null);
+
+  const playerPassword = useSelector((state) => state.game.playerPassword[name].answer);
   const dispatch = useDispatch();
-  const lockRef = useRef();
 
-  const closeLock = () => {
-    dispatch(changePlayerPassword(name, answer));
-    showLock(false);
-  };
-
-  const clickLockOutside = (event) => {
-    if (!lockRef.current || lockRef.current.contains(event.target)) return;
-    closeLock();
-  };
+  const { handleModal } = useContext(ModalContext);
 
   const handleAnswer = (event) => {
     const { value } = event.target;
-    setAnswer(value);
+    dispatch(changePlayerPassword(name, value));
   };
 
   const checkAnswer = () => {
-    if (answer === password) {
+    if (playerPassword === password) {
       setIsCorrect(true);
       dispatch(solvePassword(name));
       return;
@@ -107,52 +85,43 @@ function Lock({ name, password, showLock }) {
   };
 
   return (
-    <Backdrop onClick={clickLockOutside}>
-      <Wrapper ref={lockRef}>
-        <CloseButton
-          title="Close"
-          top="-30px"
-          closeModal={closeLock}
-          color="#f8a507"
-        />
-        <Title>비밀번호</Title>
-        {isCorrect
-          ? (
-            <>
-              <Image src={lockUnlocked} alt="자물쇠 그림" />
-              <Button type="button" onClick={closeLock}>확인</Button>
-            </>
-          )
-          : (
-            <>
-              <Image src={lock} alt="자물쇠 그림" />
-              <p>{name} {password}</p>
-              <InputBox>
-                <Input
-                  type="text"
-                  name="password"
-                  onChange={handleAnswer}
-                />
-                <Button
-                  type="button"
-                  onClick={checkAnswer}
-                >
-                  입력
-                </Button>
-              </InputBox>
-              {result
-                && <Result>{result}</Result>}
-            </>
-          )}
-      </Wrapper>
-    </Backdrop>
+    <Content>
+      <Title>비밀번호</Title>
+      {isCorrect
+        ? (
+          <>
+            <Image src={lockUnlocked} alt="자물쇠 그림" />
+            <Button type="button" onClick={() => handleModal(null)}>확인</Button>
+          </>
+        )
+        : (
+          <>
+            <Image src={lock} alt="자물쇠 그림" />
+            <InputBox>
+              <Input
+                type="text"
+                name="password"
+                onChange={handleAnswer}
+                value={playerPassword}
+              />
+              <Button
+                type="button"
+                onClick={checkAnswer}
+              >
+                입력
+              </Button>
+            </InputBox>
+            {result
+              && <Result>{result}</Result>}
+          </>
+        )}
+    </Content>
   );
 }
 
 Lock.propTypes = {
   name: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  showLock: PropTypes.func.isRequired
+  password: PropTypes.string.isRequired
 };
 
 export default Lock;

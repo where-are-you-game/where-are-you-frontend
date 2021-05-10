@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { changeTextBox } from "../../../actions/game";
 import { showPuzzleModal } from "../../../actions/puzzleModal";
 import cursor from "../../../assets/common/search_cursor.png";
+import { ModalContext } from "../../../contexts/ModalContext";
+import Lock from "../Lock";
 import BedRoom from "./BedRoom";
 import Kitchen from "./Kitchen";
 import Livingroom from "./LivingRoom";
@@ -23,10 +25,12 @@ const Wrapper = styled.div`
   };
 `;
 
-function Room({ room, showLock }) {
+function Room({ room }) {
   const puzzles = useSelector((state) => state.puzzle.byName);
   const passwords = useSelector((state) => state.password.byName);
   const playerPassword = useSelector((state) => state.game.playerPassword);
+
+  const { handleModal } = useContext(ModalContext);
   const dispatch = useDispatch();
 
   const showPuzzle = (image) => {
@@ -38,7 +42,7 @@ function Room({ room, showLock }) {
     if (image.password) {
       if (playerPassword[image.password].isUnlocked === false) {
         const { name, password } = passwords[image.password];
-        showLock({ name, password });
+        handleModal(<Lock name={name} password={password} />);
         return;
       }
     }
@@ -67,8 +71,7 @@ function Room({ room, showLock }) {
 }
 
 Room.propTypes = {
-  room: PropTypes.string.isRequired,
-  showLock: PropTypes.func.isRequired
+  room: PropTypes.string.isRequired
 };
 
 export default Room;

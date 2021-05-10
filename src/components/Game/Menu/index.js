@@ -1,30 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import CloseButton from "../../Shared/ModalCloseButton";
-
-const Backdrop = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.4);
-`;
-
-const Wrapper = styled.div`
+const Content = styled.div`
   width: 400px;
   height: auto;
   padding: ${({ theme }) => theme.padding.big};
-  position: relative;
-  background: white;
 `;
 
 const Title = styled.p`
@@ -57,46 +39,23 @@ const Button = styled(Link)`
   }
 `;
 
-function Menu({ showMenu }) {
-  const option = useRef();
-
-  const closeMenu = () => {
-    showMenu(false);
-  };
-
-  const clickOptionOutside = (event) => {
-    if (!option.current || option.current.contains(event.target)) return;
-    closeMenu();
-  };
-
+function Menu() {
   return (
-    <Backdrop onClick={clickOptionOutside}>
-      <Wrapper ref={option}>
-        <CloseButton
-          title="Close"
-          top="-30px"
-          closeModal={closeMenu}
-          color="#f8a507"
-        />
-        <Title>MENU</Title>
-        <List>
-          <li>
-            <Button>메인 화면으로</Button>
-          </li>
-          <li>
-            <Button>처음부터 다시 하기</Button>
-          </li>
-          <li>
-            <Button>리뷰 보러가기</Button>
-          </li>
-        </List>
-      </Wrapper>
-    </Backdrop>
+    <Content>
+      <Title>MENU</Title>
+      <List>
+        <li>
+          <Button>메인 화면으로</Button>
+        </li>
+        <li>
+          <Button>처음부터 다시 하기</Button>
+        </li>
+        <li>
+          <Button>리뷰 보러가기</Button>
+        </li>
+      </List>
+    </Content>
   );
 }
-
-Menu.propTypes = {
-  showMenu: PropTypes.func.isRequired
-};
 
 export default Menu;

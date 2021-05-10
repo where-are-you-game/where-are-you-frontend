@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { savePasswords } from "../../actions/password";
 import { savePuzzles } from "../../actions/puzzle";
 import { fetchPuzzles, fetchPasswords } from "../../api";
+import { ModalProvider } from "../../contexts/ModalContext";
 import GlobalStyles from "../../styles";
 import GlobalFonts from "../../styles/fonts";
 import theme from "../../styles/theme";
@@ -56,10 +57,10 @@ function App() {
         {isLoading
           ? <Loading />
           : (
-            <>
+            <ModalProvider>
               <Route path="/" exact component={Main} />
               <Route path="/game/:room" component={Game} />
-            </>
+            </ModalProvider>
           )}
       </ThemeProvider>
     </Wrapper>
