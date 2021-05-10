@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { changeTextBox } from "../../actions/game";
-import { showPuzzleModal } from "../../actions/puzzleModal";
-import cursor from "../../assets/common/search_cursor.png";
-import Kitchen from "./Room/Kitchen";
-import Livingroom from "./Room/LivingRoom";
+import { changeTextBox } from "../../../actions/game";
+import { showPuzzleModal } from "../../../actions/puzzleModal";
+import cursor from "../../../assets/common/search_cursor.png";
+import BedRoom from "./BedRoom";
+import Kitchen from "./Kitchen";
+import Livingroom from "./LivingRoom";
 
 const Wrapper = styled.div`
   width: 800px;
@@ -51,6 +52,8 @@ function Room({ room, showLock }) {
         return <Livingroom showPuzzle={showPuzzle} />;
       case "kitchen":
         return <Kitchen showPuzzle={showPuzzle} />;
+      case "bedroom":
+        return <BedRoom showPuzzle={showPuzzle} />;
       default:
         return <Livingroom />;
     }

@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import configIcon from "../../assets/common/config_icon.png";
+import IconButton from "../Shared/IconButton";
 import Lock from "./Lock";
 import Menu from "./Menu";
+import Music from "./Music";
 import Puzzle from "./Puzzle";
 import Room from "./Room";
-import Textbox from "./Textbox";
-import Todolist from "./Todolist";
+import TextBox from "./TextBox";
+import TodoList from "./TodoList";
 
 const Wrapper = styled.div`
   width: 800px;
@@ -40,22 +42,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const MenuButton = styled.button`
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  right: calc((50px + 0.5rem) * -1);
-  background: #ffffff url(${configIcon}) no-repeat center;
-  opacity: 0.4;
-  transition: 0.3s all;
-
-  &:hover {
-    opacity: 1;
-  }
-`;
-
 function Game() {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isLockVisible, setIsLockVisible] = useState(false);
@@ -72,16 +58,19 @@ function Game() {
   return (
     <>
       <Wrapper room={room}>
-        <Todolist />
+        <TodoList />
         <Room
           room={room}
           showLock={showLock}
         />
-        <Textbox />
-        <MenuButton
+        <TextBox />
+        <IconButton
           type="button"
-          onClick={() => setIsMenuVisible(!isMenuVisible)}
+          icon={configIcon}
+          top="0px"
+          handleClick={() => setIsMenuVisible(!isMenuVisible)}
         />
+        <Music />
       </Wrapper>
       {isLockVisible
         && (
