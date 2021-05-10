@@ -35,7 +35,7 @@ export const drawImage = (context, img, x, y, width, height) => {
   };
 };
 
-export const removeImage = (context, x, y, width, height) => {
+const removeImage = (context, x, y, width, height) => {
   context.clearRect(x, y, width, height);
 };
 
