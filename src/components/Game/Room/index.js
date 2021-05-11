@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { changeTextBox } from "../../../actions/game";
-import { showPuzzleModal } from "../../../actions/puzzleModal";
 import cursor from "../../../assets/common/search_cursor.png";
 import { ModalContext } from "../../../contexts/ModalContext";
 import Lock from "../Lock";
+import StylePuzzle from "../StylePuzzle";
 import BedRoom from "./BedRoom";
 import Kitchen from "./Kitchen";
 import Livingroom from "./LivingRoom";
@@ -47,7 +47,8 @@ function Room({ room }) {
       }
     }
 
-    dispatch(showPuzzleModal(puzzles[image.puzzle]));
+    const puzzle = puzzles[image.puzzle];
+    handleModal(<StylePuzzle puzzle={puzzle} />);
   };
 
   const renderRoom = (room) => {

@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,7 +9,6 @@ import IconButton from "../Shared/IconButton";
 import Menu from "./Menu";
 import Music from "./Music";
 import Room from "./Room";
-import StylePuzzle from "./StylePuzzle";
 import TextBox from "./TextBox";
 import TodoList from "./TodoList";
 
@@ -44,8 +42,6 @@ const Wrapper = styled.div`
 
 function Game() {
   const { handleModal } = useContext(ModalContext);
-
-  const puzzleModal = useSelector(state => state.puzzleModal);
   const { room } = useParams();
 
   return (
@@ -64,8 +60,6 @@ function Game() {
         />
         <Music />
       </Wrapper>
-      {puzzleModal.isVisible
-        && <StylePuzzle />}
     </>
   );
 }

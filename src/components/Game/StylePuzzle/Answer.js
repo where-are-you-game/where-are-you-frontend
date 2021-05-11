@@ -2,8 +2,10 @@ import React, { useRef, useLayoutEffect } from "react";
 
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { changePlayerAnswer } from "../../../actions/game";
 import Numbers from "./Numbers";
 
 const Output = styled.div`
@@ -63,8 +65,7 @@ const Label = styled.span`
 
 function Answer(props) {
   const {
-    playerAnswer,
-    handleAnswer,
+    name,
     style,
     cssBefore,
     cssAfter,
@@ -72,6 +73,14 @@ function Answer(props) {
     output
   } = props;
   const outputRef = useRef();
+
+  const playerAnswer = useSelector(state => state.game.playerAnswer[name].answer);
+  const dispatch = useDispatch();
+
+  const handleAnswer = (event) => {
+    const { value } = event.target;
+    dispatch(changePlayerAnswer(name, value));
+  };
 
   useLayoutEffect(() => {
     const selectedElements = outputRef.current.querySelectorAll(".selected");
@@ -107,8 +116,7 @@ function Answer(props) {
 }
 
 Answer.propTypes = {
-  playerAnswer: PropTypes.string.isRequired,
-  handleAnswer: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
   style: PropTypes.string.isRequired,
   cssBefore: PropTypes.string.isRequired,
   cssAfter: PropTypes.string.isRequired,
