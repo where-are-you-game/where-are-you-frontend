@@ -2,31 +2,31 @@ import React, { useRef } from "react";
 
 import PropTypes from "prop-types";
 
-import livingroomObjects from "../../../constants/livingroom.js";
+import bedroomObjects from "../../../constants/bedroom";
 import useCanvas from "../../../hooks/useCanvas";
 import LeftButton from "../../Shared/LeftButton";
 import RightButton from "../../Shared/RightButton";
 
-function LivingRoom({ showPuzzle }) {
+function BedRoom({ showPuzzle }) {
   const canvasRef = useRef();
 
-  useCanvas(canvasRef, livingroomObjects, showPuzzle);
+  useCanvas(canvasRef, bedroomObjects, showPuzzle);
 
   return (
     <>
-      <LeftButton path="/game/kitchen" text="부엌" />
+      <LeftButton path="/game/livingroom" text="거실" />
       <canvas
         ref={canvasRef}
         width={800}
         height={600}
       />
-      <RightButton path="/game/bedroom" text="방" />
+      <RightButton path="/game/catroom" text="고양이방" />
     </>
   );
 }
 
-LivingRoom.propTypes = {
+BedRoom.propTypes = {
   showPuzzle: PropTypes.func.isRequired
 };
 
-export default LivingRoom;
+export default BedRoom;
