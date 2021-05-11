@@ -9,8 +9,8 @@ import { ModalContext } from "../../contexts/ModalContext";
 import IconButton from "../Shared/IconButton";
 import Menu from "./Menu";
 import Music from "./Music";
-import Puzzle from "./Puzzle";
 import Room from "./Room";
+import StylePuzzle from "./StylePuzzle";
 import TextBox from "./TextBox";
 import TodoList from "./TodoList";
 
@@ -65,7 +65,7 @@ function Game() {
         <Music />
       </Wrapper>
       {puzzleModal.isVisible
-        && <Puzzle />}
+        && <StylePuzzle />}
     </>
   );
 }
