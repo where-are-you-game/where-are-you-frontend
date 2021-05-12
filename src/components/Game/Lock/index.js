@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,11 +6,10 @@ import styled from "styled-components";
 
 import { changePlayerPassword, solvePassword } from "../../../actions/game";
 import lock from "../../../assets/common/lock_locked.png";
-import lockUnlocked from "../../../assets/common/lock_unlocked.png";
-import { ModalContext } from "../../../contexts/ModalContext";
+import StylePuzzle from "../StylePuzzle";
 
 const Content = styled.div`
-  width: 300px;
+  width: auto;
   height: auto;
   padding: ${({ theme }) => theme.padding.big};
   display: flex;
@@ -60,14 +59,12 @@ const Result = styled.p`
   font-size: 1rem;
 `;
 
-function Lock({ name, password }) {
-  const [isCorrect, setIsCorrect] = useState(false);
+function Lock({ name, password, puzzleName }) {
   const [result, setResult] = useState(null);
 
-  const playerPassword = useSelector((state) => state.game.playerPassword[name].answer);
+  const puzzles = useSelector((state) => state.puzzle.byName);
+  const { answer, isUnlocked} = useSelector((state) => state.game.playerPassword[name]);
   const dispatch = useDispatch();
-
-  const { handleModal } = useContext(ModalContext);
 
   const handleAnswer = (event) => {
     const { value } = event.target;
@@ -75,8 +72,7 @@ function Lock({ name, password }) {
   };
 
   const checkAnswer = () => {
-    if (playerPassword === password) {
-      setIsCorrect(true);
+    if (answer === password) {
       dispatch(solvePassword(name));
       return;
     }
@@ -85,24 +81,19 @@ function Lock({ name, password }) {
   };
 
   return (
-    <Content>
-      <Title>비밀번호</Title>
-      {isCorrect
-        ? (
-          <>
-            <Image src={lockUnlocked} alt="자물쇠 그림" />
-            <Button type="button" onClick={() => handleModal(null)}>확인</Button>
-          </>
-        )
+    <>
+      {isUnlocked
+        ? <StylePuzzle puzzle={puzzles[puzzleName]} />
         : (
-          <>
+          <Content>
+            <Title>비밀번호</Title>
             <Image src={lock} alt="자물쇠 그림" />
             <InputBox>
               <Input
                 type="text"
                 name="password"
                 onChange={handleAnswer}
-                value={playerPassword}
+                value={answer}
               />
               <Button
                 type="button"
@@ -113,15 +104,16 @@ function Lock({ name, password }) {
             </InputBox>
             {result
               && <Result>{result}</Result>}
-          </>
+          </Content>
         )}
-    </Content>
+    </>
   );
 }
 
 Lock.propTypes = {
   name: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired
+  password: PropTypes.string.isRequired,
+  puzzleName: PropTypes.string.isRequired
 };
 
 export default Lock;

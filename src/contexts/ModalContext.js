@@ -18,7 +18,7 @@ const ModalProvider = ({ children }) => {
   return (
     <Provider value={{ isModalOpened, handleModal, modalContent }}>
       {children}
-      {isModalOpened && <Modal />}
+      <Modal />
     </Provider>
   );
 };

@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 import { ModalContext } from "../../../contexts/ModalContext";
-import CloseButton from "../ModalCloseButton";
+import CloseButton from "./CloseButton";
 
 const Backdrop = styled.div`
   width: 100vw;
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 `;
 
 function Modal() {
-  const { handleModal, modalContent } = useContext(ModalContext);
+  const { isModalOpened, handleModal, modalContent } = useContext(ModalContext);
   const modalRef = useRef();
 
   const clickModalOutside = (event) => {
@@ -36,18 +36,26 @@ function Modal() {
     handleModal(null);
   };
 
+  const renderModal = () => {
+    if (!isModalOpened) return null;
+
+    return (
+      <Backdrop onClick={clickModalOutside}>
+        <Wrapper ref={modalRef}>
+          <CloseButton
+            title="Close"
+            top="-30px"
+            closeModal={() => handleModal(null)}
+            color="#f8a507"
+          />
+          {modalContent}
+        </Wrapper>
+      </Backdrop>
+    );
+  };
+
   return createPortal(
-    <Backdrop onClick={clickModalOutside}>
-      <Wrapper ref={modalRef}>
-        <CloseButton
-          title="Close"
-          top="-30px"
-          closeModal={() => handleModal(null)}
-          color="#f8a507"
-        />
-        {modalContent}
-      </Wrapper>
-    </Backdrop>,
+    renderModal(),
     document.getElementById("modal")
   );
 }
