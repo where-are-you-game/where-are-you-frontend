@@ -3,10 +3,21 @@ import desk from "../assets/bedroom/desk.png";
 import drawer from "../assets/bedroom/drawer.png";
 import homework from "../assets/bedroom/homework.png";
 import lampOff from "../assets/bedroom/lamp_off.png";
+import poster from "../assets/bedroom/poster.png";
 import puzzle from "../assets/bedroom/puzzle.png";
 import table from "../assets/bedroom/table.png";
 
 const BEDROOM_OBJECTS = [
+  {
+    object: "poster",
+    src: poster,
+    x: 30,
+    y: 30,
+    width: 324,
+    height: 210,
+    puzzle: "puzzle11",
+    overlayObjects: ["bed"]
+  },
   {
     object: "bed",
     src: bed,
@@ -34,7 +45,8 @@ const BEDROOM_OBJECTS = [
     y: 363,
     width: 117,
     height: 158,
-    text: "서랍"
+    password: "password2",
+    puzzle: "puzzle12"
   },
   {
     object: "lamp",
