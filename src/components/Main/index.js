@@ -1,9 +1,9 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import DoorImage from "../../assets/main/main_door.png";
+import LinkButton from "../Shared/LinkButton";
 
 const Wrapper = styled.div`
   width: 800px;
@@ -69,51 +69,6 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.div`
-  width: 200px;
-  height: 60px;
-  margin: 1rem 0 0 0;
-  display: inline-block;
-  position: relative;
-  border: 1px solid ${({ theme }) => theme.color.black};
-  text-align: center;
-  cursor: pointer;
-  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
-
-  &::after {
-    width: 100%;
-    height: 0;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: -1;
-    background: ${({ theme }) => theme.color.black};
-    content: "";
-    transition: inherit;
-  }
-
-  &:hover {
-    box-shadow: 1px 1px 15px 2px rgba(0, 0, 0, 0.1);
-
-    a {
-      color: #ffffff;
-    }
-
-    &::after {
-      height: 100%;
-      top: 0;
-    }
-  }
-`;
-
-const LinkButton = styled(Link)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Door = styled.img`
   width: 300px;
   height: 388px;
@@ -132,9 +87,11 @@ function Main() {
           <span>you?</span>
         </Title>
         <Input placeholder="Your name" />
-        <Button>
-          <LinkButton to="/game/livingroom">GAME START</LinkButton>
-        </Button>
+        <LinkButton
+          path="/game/livingroom"
+          title="GAME START"
+          color="black"
+        />
       </StartBox>
       <Door src={DoorImage} alt="게임 메인 이미지" />
     </Wrapper>
