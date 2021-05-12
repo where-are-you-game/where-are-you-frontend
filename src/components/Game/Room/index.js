@@ -2,6 +2,7 @@ import React, { useContext, useCallback } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { changeTextBox } from "../../../actions/game";
@@ -10,6 +11,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 import Lock from "../Lock";
 import StylePuzzle from "../StylePuzzle";
 import BedRoom from "./BedRoom";
+import CatRoom from "./CatRoom";
 import Kitchen from "./Kitchen";
 import Livingroom from "./LivingRoom";
 
@@ -32,6 +34,7 @@ function Room({ room }) {
 
   const { handleModal } = useContext(ModalContext);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const showText = (image) => {
     dispatch(changeTextBox(image.text));
@@ -72,8 +75,10 @@ function Room({ room }) {
         return <Kitchen runImageAction={runImageAction} />;
       case "bedroom":
         return <BedRoom runImageAction={runImageAction} />;
+      case "catroom":
+        return <CatRoom runImageAction={runImageAction} />;
       default:
-        return <Livingroom />;
+        history.push("/notfound");
     }
   };
 
