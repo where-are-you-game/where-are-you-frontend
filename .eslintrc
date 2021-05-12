@@ -32,7 +32,7 @@
     "object-curly-newline": ["warn", {
       "ObjectPattern": {
         "multiline": true,
-        "minProperties": 3
+        "minProperties": 4
       }
     }],
     "comma-dangle": [
