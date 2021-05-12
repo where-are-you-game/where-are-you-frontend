@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,32 +33,45 @@ function Room({ room }) {
   const { handleModal } = useContext(ModalContext);
   const dispatch = useDispatch();
 
+  const showText = (image) => {
+    dispatch(changeTextBox(image.text));
+  };
+
+  const showLock = (image) => {
+    const puzzleName = puzzles[image.puzzle].name;
+    const { name, password } = passwords[image.password];
+    handleModal(<Lock name={name} password={password} puzzleName={puzzleName} />);
+  };
+
   const showPuzzle = (image) => {
-    if (image.text) {
-      dispatch(changeTextBox(image.text));
-      return;
-    }
-
-    if (image.password) {
-      if (playerPassword[image.password].isUnlocked === false) {
-        const { name, password } = passwords[image.password];
-        handleModal(<Lock name={name} password={password} />);
-        return;
-      }
-    }
-
     const puzzle = puzzles[image.puzzle];
     handleModal(<StylePuzzle puzzle={puzzle} />);
   };
 
+  const runImageAction = useCallback((image) => {
+    if (image.text) {
+      showText(image);
+      return;
+    }
+
+    if (image.password && playerPassword[image.password].isUnlocked === false) {
+      showLock(image);
+      return;
+    }
+
+    if (image.puzzle) {
+      showPuzzle(image);
+    }
+  }, []);
+
   const renderRoom = (room) => {
     switch (room) {
       case "livingroom":
-        return <Livingroom showPuzzle={showPuzzle} />;
+        return <Livingroom runImageAction={runImageAction} />;
       case "kitchen":
-        return <Kitchen showPuzzle={showPuzzle} />;
+        return <Kitchen runImageAction={runImageAction} />;
       case "bedroom":
-        return <BedRoom showPuzzle={showPuzzle} />;
+        return <BedRoom runImageAction={runImageAction} />;
       default:
         return <Livingroom />;
     }

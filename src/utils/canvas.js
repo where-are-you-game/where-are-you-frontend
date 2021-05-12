@@ -39,7 +39,7 @@ const removeImage = (context, x, y, width, height) => {
   context.clearRect(x, y, width, height);
 };
 
-export const clickImage = (canvas, context, images, callback) => {
+export const clickImage = (canvas, context, images, runImageAction) => {
   canvas.addEventListener("click", (event) => {
     const { mouseX, mouseY } = getMousePosition(canvas, event);
 
@@ -65,8 +65,8 @@ export const clickImage = (canvas, context, images, callback) => {
           drawImage(context, afterSrc, currentImage.x, currentImage.y, currentImage.width, currentImage.height);
         }
 
-        callback(currentImage);
-        return;
+        runImageAction(currentImage);
+        break;
       }
     }
   });

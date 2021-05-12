@@ -6,10 +6,10 @@ import kitchenObjects from "../../../constants/kitchen";
 import useCanvas from "../../../hooks/useCanvas";
 import RightButton from "../../Shared/RightButton";
 
-function Kitchen({ showPuzzle }) {
+function Kitchen({ runImageAction }) {
   const canvasRef = useRef();
 
-  useCanvas(canvasRef, kitchenObjects, showPuzzle);
+  useCanvas(canvasRef, kitchenObjects, runImageAction);
 
   return (
     <>
@@ -24,7 +24,7 @@ function Kitchen({ showPuzzle }) {
 }
 
 Kitchen.propTypes = {
-  showPuzzle: PropTypes.func.isRequired
+  runImageAction: PropTypes.func.isRequired
 };
 
 export default Kitchen;

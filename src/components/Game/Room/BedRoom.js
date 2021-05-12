@@ -7,10 +7,10 @@ import useCanvas from "../../../hooks/useCanvas";
 import LeftButton from "../../Shared/LeftButton";
 import RightButton from "../../Shared/RightButton";
 
-function BedRoom({ showPuzzle }) {
+function BedRoom({ runImageAction }) {
   const canvasRef = useRef();
 
-  useCanvas(canvasRef, bedroomObjects, showPuzzle);
+  useCanvas(canvasRef, bedroomObjects, runImageAction);
 
   return (
     <>
@@ -26,7 +26,7 @@ function BedRoom({ showPuzzle }) {
 }
 
 BedRoom.propTypes = {
-  showPuzzle: PropTypes.func.isRequired
+  runImageAction: PropTypes.func.isRequired
 };
 
 export default BedRoom;

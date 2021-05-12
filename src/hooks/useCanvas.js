@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 import { drawImage, clickImage } from "../utils/canvas";
 
-const useCanvas = (canvasRef, images, showPuzzle) => {
-  return useEffect(() => {
+const useCanvas = (canvasRef, images, runImageAction) => {
+  useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
@@ -11,8 +11,8 @@ const useCanvas = (canvasRef, images, showPuzzle) => {
       drawImage(context, image.src, image.x, image.y, image.width, image.height);
     }
 
-    clickImage(canvas, context, images, showPuzzle);
-  }, [showPuzzle]);
+    clickImage(canvas, context, images, runImageAction);
+  }, []);
 };
 
 export default useCanvas;
