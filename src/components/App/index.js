@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { useDispatch } from "react-redux";
-import { Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 
 import { savePasswords } from "../../actions/password";
@@ -14,6 +14,7 @@ import theme from "../../styles/theme";
 import Game from "../Game";
 import Loading from "../Loading";
 import Main from "../Main";
+import NotFound from "../Shared/NotFound";
 
 const Wrapper = styled.div``;
 
@@ -58,8 +59,11 @@ function App() {
           ? <Loading />
           : (
             <ModalProvider>
-              <Route path="/" exact component={Main} />
-              <Route path="/game/:room" component={Game} />
+              <Switch>
+                <Route path="/" exact component={Main} />
+                <Route path="/game/:room" component={Game} />
+                <Route component={NotFound}/>
+              </Switch>
             </ModalProvider>
           )}
       </ThemeProvider>
