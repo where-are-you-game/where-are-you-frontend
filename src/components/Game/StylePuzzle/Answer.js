@@ -27,15 +27,20 @@ const Style = styled.div`
 
 const StyleTextarea = styled.textarea`
   width: calc(100% - 43px - 0.5rem);
-  height: 95px;
+  height: 80px;
   margin: 0 0 0 43px;
-  padding: 8px;
+  padding: 5px;
   display: block;
   font-family: "Anonymous Pro";
+  line-height: 18px;
   resize: none;
 
   &::placeholder {
     color: #bbbbbb;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -83,6 +88,17 @@ function Answer(props) {
   };
 
   useLayoutEffect(() => {
+    const removeStyles = (node) => {
+      node.removeAttribute("style");
+
+      if (node.hasChildNodes) {
+        for (let i = 0; i < node.children.length; i++) {
+          removeStyles(node.children[i]);
+        }
+      }
+    };
+
+    removeStyles(outputRef.current);
     const selectedElements = outputRef.current.querySelectorAll(".selected");
 
     for (let i =0; i < selectedElements.length; i++) {

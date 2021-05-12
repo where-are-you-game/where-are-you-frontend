@@ -1,10 +1,8 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
 import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { changePlayerAnswer } from "../../../actions/game";
 import Answer from "./Answer";
 import Question from "./Question";
 
@@ -20,15 +18,12 @@ const Content = styled.div`
 `;
 
 function StylePuzzle({ puzzle }) {
-  const playerAnswer = useSelector(state => state.game.playerAnswer[puzzle.name].answer);
-  const [answer, setAnswer] = useState(playerAnswer);
-  const dispatch = useDispatch();
-
   return (
     <Content>
       <Question
         title={puzzle.title}
         content={puzzle.content}
+        hint={puzzle.hint}
       />
       <Answer
         name={puzzle.name}
