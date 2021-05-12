@@ -14,7 +14,7 @@ const Button = styled.button`
   color: #ffffff;
 `;
 
-function ModalCloseButton(props) {
+function CloseButton(props) {
   const {
     title,
     color,
@@ -36,7 +36,7 @@ function ModalCloseButton(props) {
   );
 }
 
-ModalCloseButton.propTypes = {
+CloseButton.propTypes = {
   title: PropTypes.string,
   color: PropTypes.string,
   top: PropTypes.string,
@@ -44,11 +44,11 @@ ModalCloseButton.propTypes = {
   closeModal: PropTypes.func.isRequired
 };
 
-ModalCloseButton.defaultProps = {
+CloseButton.defaultProps = {
   title: "Close",
   color: "#f8a507",
   top: "0px",
   right: "0px"
 };
 
-export default ModalCloseButton;
+export default CloseButton;
