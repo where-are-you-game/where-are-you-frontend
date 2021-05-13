@@ -18,8 +18,8 @@ const makeAnswer = (name, count) => {
 };
 
 const initialState = {
-  playerAnswer: makeAnswer("puzzle", 14),
-  playerPassword: makeAnswer("password", 3),
+  playerAnswer: makeAnswer("puzzle", 20),
+  playerPassword: makeAnswer("password", 5),
   textBox: "테이블 위에 편지가 있다. 누가 쓴 거지? 읽어봐야겠다.",
   error: null
 };
