@@ -8,6 +8,7 @@ const color = {
   grey: "#bbbbbb",
   livingroom: "#fcf9e9",
   kitchen: "#c9effe",
+  bathroom: "#c9effe",
   bedroom: "#fefbd5",
   catroom: "#e6fde2",
   background: "#eae7d6"

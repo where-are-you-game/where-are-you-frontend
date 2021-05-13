@@ -10,6 +10,7 @@ import cursor from "../../../assets/common/search_cursor.png";
 import { ModalContext } from "../../../contexts/ModalContext";
 import Lock from "../Lock";
 import StylePuzzle from "../StylePuzzle";
+import BathRoom from "./BathRoom";
 import BedRoom from "./BedRoom";
 import CatRoom from "./CatRoom";
 import Kitchen from "./Kitchen";
@@ -77,6 +78,8 @@ function Room({ room }) {
         return <BedRoom runImageAction={runImageAction} />;
       case "catroom":
         return <CatRoom runImageAction={runImageAction} />;
+      case "bathroom":
+        return <BathRoom runImageAction={runImageAction} />;
       default:
         history.push("/notfound");
     }

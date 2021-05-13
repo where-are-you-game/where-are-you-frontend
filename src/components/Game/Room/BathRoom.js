@@ -2,31 +2,29 @@ import React, { useRef } from "react";
 
 import PropTypes from "prop-types";
 
-import catroomObjects from "../../../constants/catroom";
+import bathroomObjects from "../../../constants/bathroom";
 import useCanvas from "../../../hooks/useCanvas";
 import LeftButton from "../../Shared/LeftButton";
-import RightButton from "../../Shared/RightButton";
 
-function BedRoom({ runImageAction }) {
+function BathRoom({ runImageAction }) {
   const canvasRef = useRef();
 
-  useCanvas(canvasRef, catroomObjects, runImageAction);
+  useCanvas(canvasRef, bathroomObjects, runImageAction);
 
   return (
     <>
-      <LeftButton path="/game/bedroom" text="방" />
+      <LeftButton path="/game/catroom" text="고양이방" />
       <canvas
         ref={canvasRef}
         width={800}
         height={600}
       />
-      <RightButton path="/game/bathroom" text="화장실" />
     </>
   );
 }
 
-BedRoom.propTypes = {
+BathRoom.propTypes = {
   runImageAction: PropTypes.func.isRequired
 };
 
-export default BedRoom;
+export default BathRoom;
