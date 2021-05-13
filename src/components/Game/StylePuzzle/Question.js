@@ -7,6 +7,22 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+
+  table {
+    float: right;
+    margin: -45px 0 0 0;
+    padding: 0;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  table tr td {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid black;
+    text-align: center;
+  }
 `;
 
 const Title = styled.p`
@@ -29,7 +45,7 @@ const Hint = styled.a`
   }
 `;
 
-const Content = styled.p`
+const Content = styled.div`
   white-space: pre-wrap;
 `;
 
