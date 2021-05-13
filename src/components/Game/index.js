@@ -10,6 +10,7 @@ import Menu from "./Menu";
 import Music from "./Music";
 import Room from "./Room";
 import TextBox from "./TextBox";
+import Timer from "./Timer";
 import TodoList from "./TodoList";
 
 const Wrapper = styled.div`
@@ -47,6 +48,7 @@ function Game() {
   return (
     <>
       <Wrapper room={room}>
+        <Timer />
         <TodoList />
         <Room
           room={room}

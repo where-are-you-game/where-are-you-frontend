@@ -1,8 +1,11 @@
+import produce from "immer";
+
 import * as type from "../constants/actionTypes";
+
 
 const initialState = {
   name: "",
-  clearTime: ""
+  clearTime: 0
 };
 
 const player = (state = initialState, action) => {
@@ -21,8 +24,13 @@ const player = (state = initialState, action) => {
       return {
         ...state,
         name: "",
-        clearTime: ""
+        clearTime: 0
       };
+    case type.COUNT_CLEARTIME:
+      return produce(state, (draft) => {
+        const originTime = draft.clearTime;
+        draft.clearTime = originTime + 1;
+      });
     default:
       return state;
   }

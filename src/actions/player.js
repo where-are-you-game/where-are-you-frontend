@@ -13,3 +13,7 @@ export const saveClearTime = (clearTime) => ({
 export const removePlayer = () => ({
   type: type.REMOVE_PLAYER
 });
+
+export const countClearTime = () => ({
+  type: type.COUNT_CLEARTIME
+});
