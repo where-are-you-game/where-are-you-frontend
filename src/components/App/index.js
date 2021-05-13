@@ -62,7 +62,7 @@ function App() {
               <Switch>
                 <Route path="/" exact component={Main} />
                 <Route path="/game/:room" component={Game} />
-                <Route component={NotFound}/>
+                <Route render={(props) => <NotFound {...props} title={"404\nNot Found"} text="이런.. 존재하지 않는 페이지입니다." />}/>
               </Switch>
             </ModalProvider>
           )}

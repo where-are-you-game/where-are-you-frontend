@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import NotFoundImage from "../../assets/common/not_found.png";
@@ -28,6 +28,7 @@ const Title = styled.p`
   font-weight: bold;
   line-height: 1.5rem;
   text-align: center;
+  white-space: pre-line;
 `;
 
 const Text = styled.p`
@@ -35,17 +36,13 @@ const Text = styled.p`
   font-size: 1.3rem;
 `;
 
-function NotFound() {
+function NotFound({ title, text }) {
   return (
     <Wrapper>
       <Image>
-        <Title>
-          404
-          <br/>
-          Not Found
-        </Title>
+        <Title>{title}</Title>
       </Image>
-      <Text>이런.. 존재하지 않는 페이지입니다.</Text>
+      <Text>{text}</Text>
       <LinkButton
         path="/"
         title="메인으로 가기"
@@ -54,5 +51,15 @@ function NotFound() {
     </Wrapper>
   );
 }
+
+NotFound.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string
+};
+
+NotFound.deafultProps = {
+  title: "404\nNotFound",
+  text: "이런... 존재하지 않는 페이지입니다."
+};
 
 export default NotFound;
