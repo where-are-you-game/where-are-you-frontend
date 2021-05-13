@@ -21,3 +21,7 @@ export const solvePassword = (passwordName) => ({
   type: type.SOLVE_PASSWORD,
   passwordName
 });
+
+export const removePlayerGameData = () => ({
+  type: type.REMOVE_PLAYER_GAME_DATA
+});

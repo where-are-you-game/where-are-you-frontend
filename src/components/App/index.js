@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 
@@ -19,6 +19,8 @@ import NotFound from "../Shared/NotFound";
 const Wrapper = styled.div``;
 
 function App() {
+  const puzzles = useSelector((state) => state.puzzle.allNames);
+  const passwords = useSelector((state) => state.password.allNames);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -32,6 +34,8 @@ function App() {
   };
 
   const getPuzzlesAndPasswords = async () => {
+    if (puzzles.length > 0 && passwords.length > 0) return;
+
     try {
       setIsLoading(true);
 

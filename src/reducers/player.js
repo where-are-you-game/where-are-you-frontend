@@ -17,6 +17,12 @@ const player = (state = initialState, action) => {
         ...state,
         clearTime: action.clearTime
       };
+    case type.REMOVE_PLAYER:
+      return {
+        ...state,
+        name: "",
+        clearTime: ""
+      };
     default:
       return state;
   }

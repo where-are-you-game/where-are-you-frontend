@@ -42,6 +42,11 @@ const game = (state = initialState, action) => {
       return produce(state, (draft) => {
         draft.playerPassword[action.passwordName].isUnlocked = true;
       });
+    case type.REMOVE_PLAYER_GAME_DATA:
+      return produce(state, (draft) => {
+        draft.playerAnswer = makeAnswer("puzzle", 20);
+        draft.playerPassword = makeAnswer("password", 5);
+      });
     default:
       return state;
   }
