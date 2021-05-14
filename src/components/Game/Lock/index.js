@@ -94,6 +94,7 @@ function Lock({ name, password, puzzleName }) {
                 name="password"
                 onChange={handleAnswer}
                 value={answer}
+                autoComplete="off"
               />
               <Button
                 type="button"
