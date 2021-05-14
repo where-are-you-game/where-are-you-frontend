@@ -14,13 +14,13 @@ function LivingRoom({ runImageAction }) {
 
   return (
     <>
-      <LeftButton path="/game/kitchen" text="부엌" />
+      <LeftButton path="/game/room/kitchen" text="부엌" />
       <canvas
         ref={canvasRef}
         width={800}
         height={600}
       />
-      <RightButton path="/game/bedroom" text="방" />
+      <RightButton path="/game/room/bedroom" text="방" />
     </>
   );
 }

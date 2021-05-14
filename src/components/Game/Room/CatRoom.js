@@ -14,13 +14,13 @@ function BedRoom({ runImageAction }) {
 
   return (
     <>
-      <LeftButton path="/game/bedroom" text="방" />
+      <LeftButton path="/game/room/bedroom" text="방" />
       <canvas
         ref={canvasRef}
         width={800}
         height={600}
       />
-      <RightButton path="/game/bathroom" text="화장실" />
+      <RightButton path="/game/room/bathroom" text="화장실" />
     </>
   );
 }

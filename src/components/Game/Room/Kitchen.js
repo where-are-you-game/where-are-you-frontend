@@ -18,7 +18,7 @@ function Kitchen({ runImageAction }) {
         width={800}
         height={600}
       />
-      <RightButton path="/game/livingroom" text="거실" />
+      <RightButton path="/game/room/livingroom" text="거실" />
     </>
   );
 }

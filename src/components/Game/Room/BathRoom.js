@@ -13,7 +13,7 @@ function BathRoom({ runImageAction }) {
 
   return (
     <>
-      <LeftButton path="/game/catroom" text="고양이방" />
+      <LeftButton path="/game/room/catroom" text="고양이방" />
       <canvas
         ref={canvasRef}
         width={800}
