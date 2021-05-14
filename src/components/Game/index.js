@@ -8,6 +8,7 @@ import { ModalContext } from "../../contexts/ModalContext";
 import IconButton from "../Shared/IconButton";
 import Menu from "./Menu";
 import Music from "./Music";
+import ProgressBar from "./ProgressBar";
 import Room from "./Room";
 import TextBox from "./TextBox";
 import Timer from "./Timer";
@@ -49,6 +50,7 @@ function Game() {
     <>
       <Wrapper room={room}>
         <Timer />
+        <ProgressBar />
         <TodoList />
         <Room
           room={room}
