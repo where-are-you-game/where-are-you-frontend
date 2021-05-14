@@ -101,7 +101,7 @@ function Main() {
     }
 
     dispatch(savePlayerName(name.trim()));
-    history.push("/game/livingroom");
+    history.push("/game/room/livingroom");
   };
 
   const startNewGame = () => {
@@ -113,7 +113,7 @@ function Main() {
     return (
       <>
         <LinkButton
-          path="/game/livingroom"
+          path="/game/room/livingroom"
           color="black"
           title="CONTINUE"
         />
