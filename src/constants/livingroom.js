@@ -23,7 +23,7 @@ const LIVIGNROOM_OBJECTS = [
     y: 50,
     width: 170,
     height: 309,
-    text: "문"
+    password: "password5"
   },
   {
     object: "frames",
