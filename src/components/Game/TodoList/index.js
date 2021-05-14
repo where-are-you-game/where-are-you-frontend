@@ -59,11 +59,11 @@ function Todolist() {
   return (
     <ToDoList>
       <li>TODO LIST</li>
-      <li><span>1. 숙제하기</span></li>
-      <li><span>2. 저녁먹기 (샌드위치)</span></li>
-      <li><span>3. 청소하기</span></li>
-      <li><span>4. 퍼즐 완성하기</span></li>
-      <li><span>5. ????</span></li>
+      <li><span>1. 냉장고에 있는 아이스크림 먹기</span></li>
+      <li><span>2. 소파 쿠션 정리하기</span></li>
+      <li><span>3. 책상 밑 서랍 정리하기</span></li>
+      <li><span>4. 고양이 방 책꽂이 정리하기</span></li>
+      <li><span>5. 화장실 수납장 정리하기</span></li>
     </ToDoList>
   );
 }
