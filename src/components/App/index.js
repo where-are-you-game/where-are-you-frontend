@@ -11,6 +11,7 @@ import { ModalProvider } from "../../contexts/ModalContext";
 import GlobalStyles from "../../styles";
 import GlobalFonts from "../../styles/fonts";
 import theme from "../../styles/theme";
+import Ending from "../Ending";
 import Game from "../Game";
 import Loading from "../Loading";
 import Main from "../Main";
@@ -23,6 +24,7 @@ function App() {
   const puzzles = useSelector((state) => state.puzzle.allNames);
   const passwords = useSelector((state) => state.password.allNames);
   const playerName = useSelector((state) => state.player.name);
+  const playerPassword = useSelector((state) => state.game.playerPassword);
 
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -68,7 +70,16 @@ function App() {
             <ModalProvider>
               <Switch>
                 <Route path="/" exact component={Main} />
-                <PrivateRoute path="/game/:room" hasPlayData={Boolean(playerName !== "")} component={Game} />
+                <PrivateRoute
+                  path="/game/room/:room"
+                  isAuthenticated={Boolean(playerName !== "")}
+                  component={Game}
+                />
+                <PrivateRoute
+                  path="/game/ending"
+                  isAuthenticated={playerPassword["password5"].isUnlocked}
+                  component={Ending}
+                />
                 <Route render={(props) => <NotFound {...props} title={"404\nNot Found"} text="이런.. 존재하지 않는 페이지입니다." />}/>
               </Switch>
             </ModalProvider>
