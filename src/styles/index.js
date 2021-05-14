@@ -47,10 +47,15 @@ export const buttonStyle = css`
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: -1;
+    z-index: 0;
     background: ${({ theme, color }) => theme.color[color]};
     content: "";
     transition: inherit;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
   }
 
   &:hover {
@@ -60,6 +65,10 @@ export const buttonStyle = css`
     &::after {
       height: 100%;
       top: 0;
+    }
+
+    span {
+      color: #ffffff;
     }
   }
 `;

@@ -16,7 +16,7 @@ function NormalButton({ title, color, handleClick }) {
       color={color}
       onClick={handleClick}
     >
-      {title}
+      <span>{title}</span>
     </Button>
   );
 }

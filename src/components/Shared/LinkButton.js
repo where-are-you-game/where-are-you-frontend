@@ -13,7 +13,7 @@ const Button = styled(Link)`
 function LinkButton({ path, title, color }) {
   return (
     <Button to={path} color={color}>
-      {title}
+      <span>{title}</span>
     </Button>
   );
 }
