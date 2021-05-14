@@ -3,12 +3,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 
-function PrivateRoute({ component: Component, hasPlayData, ...rest }) {
+function PrivateRoute({ component: Component, isAuthenticated, ...rest }) {
   return (
     <Route
       {...rest}
       render={(props) =>
-        hasPlayData
+        isAuthenticated
           ? <Component {...props} />
           : <Redirect to="/" />}
     />
@@ -17,7 +17,7 @@ function PrivateRoute({ component: Component, hasPlayData, ...rest }) {
 
 PrivateRoute.propTypes = {
   component: PropTypes.elementType.isRequired,
-  hasPlayData: PropTypes.bool.isRequired
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 export default PrivateRoute;
