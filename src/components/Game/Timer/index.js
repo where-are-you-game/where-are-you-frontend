@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   position: absolute;
   top: -45px;
   left: calc((250px + 3rem) * -1);
-  z-index: 10;
+  z-index: 1;
   background: ${({ theme }) => theme.color.black};
   color: #ffffff;
 `;
@@ -24,7 +24,7 @@ function Timer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       dispatch(countClearTime());
     }, 1000);
   }, [clearTime]);
@@ -43,7 +43,7 @@ function Timer() {
 
   return (
     <Wrapper>
-      <Label>CLEAR TIME</Label>
+      <Label>PLAY TIME</Label>
       {renderTimer(clearTime)}
     </Wrapper>
   );
