@@ -9,6 +9,7 @@ import { changeTextBox } from "../../../actions/game";
 import cursor from "../../../assets/common/search_cursor.png";
 import { ModalContext } from "../../../contexts/ModalContext";
 import Lock from "../Lock";
+import SliderLock from "../SliderLock";
 import StylePuzzle from "../StylePuzzle";
 import BathRoom from "./BathRoom";
 import BedRoom from "./BedRoom";
@@ -42,9 +43,15 @@ function Room({ room }) {
   };
 
   const showLock = (image) => {
-    const puzzleName = puzzles[image.puzzle].name;
+    const puzzle = puzzles[image.puzzle];
     const { name, password } = passwords[image.password];
-    handleModal(<Lock name={name} password={password} puzzleName={puzzleName} />);
+
+    if (puzzle === undefined) {
+      handleModal(<SliderLock name={name} password={password} />);
+      return;
+    }
+
+    handleModal(<Lock name={name} password={password} puzzleName={puzzle.name} />);
   };
 
   const showPuzzle = (image) => {
