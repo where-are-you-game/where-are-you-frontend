@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { drawImage, clickImage } from "../utils/canvas";
+import { drawImage, clickImage, runCursorEvent } from "../utils/canvas";
 
 const useCanvas = (canvasRef, images, runImageAction) => {
   useEffect(() => {
@@ -12,6 +12,7 @@ const useCanvas = (canvasRef, images, runImageAction) => {
     }
 
     clickImage(canvas, context, images, runImageAction);
+    runCursorEvent(canvas, context, images, runImageAction);
   }, []);
 };
 

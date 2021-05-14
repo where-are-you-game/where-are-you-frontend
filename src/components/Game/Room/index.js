@@ -3,7 +3,7 @@ import React, { useContext, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { changeTextBox } from "../../../actions/game";
 import cursor from "../../../assets/common/search_cursor.png";
@@ -17,6 +17,20 @@ import CatRoom from "./CatRoom";
 import Kitchen from "./Kitchen";
 import Livingroom from "./LivingRoom";
 
+const scale = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.7)
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
+
 const Wrapper = styled.div`
   width: 800px;
   height: 600px;
@@ -29,10 +43,23 @@ const Wrapper = styled.div`
   };
 `;
 
+const Circle = styled.div`
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  z-index: 1;
+  background: ${({ theme }) => theme.color.orange};
+  border-radius: 50%;
+  animation: ${scale} 2s infinite;
+  mix-blend-mode: luminosity;
+  opacity: 0;
+`;
+
 function Room({ room }) {
   const puzzles = useSelector((state) => state.puzzle.byName);
   const passwords = useSelector((state) => state.password.byName);
-  const playerPassword = useSelector((state) => state.game.playerPassword);
 
   const { handleModal } = useContext(ModalContext);
   const dispatch = useDispatch();
@@ -65,7 +92,7 @@ function Room({ room }) {
       return;
     }
 
-    if (image.password && playerPassword[image.password].isUnlocked === false) {
+    if (image.password) {
       showLock(image);
       return;
     }
@@ -93,8 +120,9 @@ function Room({ room }) {
   };
 
   return (
-    <Wrapper>
+    <Wrapper id="canvasWrapper">
       {renderRoom(room)}
+      <Circle id="circle" />
     </Wrapper>
   );
 }
