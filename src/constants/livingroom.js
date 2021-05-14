@@ -1,4 +1,6 @@
 import carpet from "../assets/livingroom/carpet.png";
+import detailPlant from "../assets/livingroom/detail01.png";
+import detailCarpet from "../assets/livingroom/detail02.png";
 import door from "../assets/livingroom/door.png";
 import frames from "../assets/livingroom/frames.png";
 import letter from "../assets/livingroom/letter.png";
@@ -14,6 +16,7 @@ const LIVIGNROOM_OBJECTS = [
     y: 450,
     width: 480,
     height: 89,
+    detailImage: detailCarpet,
     text: "줄무늬 카펫이다. 가끔씩 먼지가 날린다."
   },
   {
@@ -50,6 +53,7 @@ const LIVIGNROOM_OBJECTS = [
     y: 200,
     width: 60,
     height: 183,
+    detailImage: detailPlant,
     text: "빨간색 산세베리아. 산세베리아 중에 빨간색이 원래 있었나?"
   },
   {

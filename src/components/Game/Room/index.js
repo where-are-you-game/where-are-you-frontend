@@ -8,6 +8,7 @@ import styled, { keyframes } from "styled-components";
 import { changeTextBox } from "../../../actions/game";
 import cursor from "../../../assets/common/search_cursor.png";
 import { ModalContext } from "../../../contexts/ModalContext";
+import DetailImage from "../DetailImage";
 import Lock from "../Lock";
 import SliderLock from "../SliderLock";
 import StylePuzzle from "../StylePuzzle";
@@ -66,6 +67,9 @@ function Room({ room }) {
   const history = useHistory();
 
   const showText = (image) => {
+    if (image.detailImage) {
+      handleModal(<DetailImage image={image.detailImage} name={image.object} text={image.text}/>);
+    }
     dispatch(changeTextBox(image.text));
   };
 

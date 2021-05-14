@@ -1,5 +1,6 @@
 import bed from "../assets/bedroom/bed.png";
 import desk from "../assets/bedroom/desk.png";
+import detailLamp from "../assets/bedroom/detail01.png";
 import drawer from "../assets/bedroom/drawer.png";
 import homework from "../assets/bedroom/homework.png";
 import lampOff from "../assets/bedroom/lamp_off.png";
@@ -55,6 +56,7 @@ const BEDROOM_OBJECTS = [
     y: 143,
     width: 140,
     height: 157,
+    detailImage: detailLamp,
     text: "낡은 스탠드. 눈이 부셔서 잘 쓰진 않는다.",
     overlayObjects: ["homework"]
   },

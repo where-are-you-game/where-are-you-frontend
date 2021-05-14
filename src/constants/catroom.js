@@ -1,6 +1,7 @@
 import bookshelf from "../assets/catroom/bookshelf.png";
 import carpet from "../assets/catroom/carpet.png";
 import catTower from "../assets/catroom/cat_tower.png";
+import detailWindow from "../assets/catroom/detail01.png";
 import photo from "../assets/catroom/photo.png";
 import rat from "../assets/catroom/rat.png";
 import window from "../assets/catroom/window.png";
@@ -13,6 +14,7 @@ const CATROOM_OBJECTS = [
     y: 30,
     width: 212,
     height: 143,
+    detailImage: detailWindow,
     text: "날씨가 좋아서 그런지 산책하는 강아지들이 보인다.",
     overlayObjects: ["catTower"]
   },
