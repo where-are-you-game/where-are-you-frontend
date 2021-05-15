@@ -5,13 +5,13 @@ const getMousePosition = (canvas, event) => {
   return { mouseX, mouseY };
 };
 
-const isMouseXOnImage = (mouseX, imageX, imageWidth) => {
-  return mouseX > imageX && mouseX < imageX + imageWidth;
-};
+const isMouseXOnImage = (mouseX, imageX, imageWidth) => (
+  mouseX > imageX && mouseX < imageX + imageWidth
+);
 
-const isMouseYOnImage = (mouseY, imageY, imageHeight) => {
-  return mouseY > imageY && mouseY < imageY + imageHeight;
-};
+const isMouseYOnImage = (mouseY, imageY, imageHeight) => (
+  mouseY > imageY && mouseY < imageY + imageHeight
+);
 
 const getOverlayImage = (mouseX, mouseY, currentImage, overlayImages, allImages) => {
   let overlayImage = currentImage;
@@ -27,12 +27,21 @@ const getOverlayImage = (mouseX, mouseY, currentImage, overlayImages, allImages)
   return overlayImage;
 };
 
-export const drawImage = (context, img, x, y, width, height) => {
-  const image = new Image();
-  image.src = img;
-  image.onload = () => {
-    context.drawImage(image, x, y, width, height);
-  };
+export const loadImage = (img) => {
+  return new Promise((resolve) => {
+    const image = new Image();
+
+    image.src = img;
+    image.onload = () => {
+      if (image.complete) {
+        resolve(image);
+      }
+    };
+  });
+};
+
+export const drawImage = (context, image, x, y, width, height) => {
+  context.drawImage(image, x, y, width, height);
 };
 
 const removeImage = (context, x, y, width, height) => {
@@ -49,7 +58,7 @@ const checkOverlayImage = (image, mouseX, mouseY, images) => {
   return currentImage;
 };
 
-const checkAfterImage = (image, context) => {
+const checkAfterImage = async (image, context) => {
   if (image.srcAfter) {
     const originSrc = image.src;
     const afterSrc = image.srcAfter;
@@ -57,7 +66,8 @@ const checkAfterImage = (image, context) => {
     image.srcAfter = originSrc;
 
     removeImage(context, image.x, image.y, image.width, image.height);
-    drawImage(context, afterSrc, image.x, image.y, image.width, image.height);
+    const loadedImage = await loadImage(afterSrc);
+    drawImage(context, loadedImage, image.x, image.y, image.width, image.height);
   }
 };
 
@@ -78,8 +88,13 @@ const runImageEvent = (canvas, context, images, action, event) => {
   }
 };
 
-export const runCursorEvent = (canvas, context, images, action) => {
+export const runCursorAnimation = (canvas, context, images, action) => {
   const circle = document.getElementById("circle");
+
+  const runImageAction = (event) => {
+    runImageEvent(canvas, context, images, action, event);
+    circle.removeEventListener("click", runImageAction);
+  };
 
   canvas.addEventListener("mousemove", (event) => {
     const { mouseX, mouseY } = getMousePosition(canvas, event);
@@ -88,6 +103,8 @@ export const runCursorEvent = (canvas, context, images, action) => {
     circle.style.left = `${mouseX - 20}px`;
     circle.style.top = `${mouseY - 20}px`;
 
+    circle.addEventListener("click", runImageAction);
+
     if (mouseX < 30 || mouseX > canvas.width - 30 || mouseY < 30 || mouseY > canvas.height - 30) {
       circle.style.opacity = 0.6;
       circle.style.left = "-9999px";
@@ -95,14 +112,6 @@ export const runCursorEvent = (canvas, context, images, action) => {
     }
   });
 
-  circle.addEventListener("click", (event) => {
-    console.log("circle");
-    runImageEvent(canvas, context, images, action, event);
-  });
-
-  circle.removeEventListener("click", (event) => {
-    runImageEvent(canvas, context, images, action, event);
-  });
 };
 
 export const clickImage = (canvas, context, images, action) => (
