@@ -32,6 +32,7 @@ function StylePuzzle({ puzzle }) {
         cssAfter={puzzle.cssAfter}
         markup={puzzle.markup}
         output={puzzle.output}
+        puzzleAnswer={puzzle.answer}
       />
     </Content>
   );
