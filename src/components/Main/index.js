@@ -2,13 +2,34 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { removePlayerGameData } from "../../actions/game";
 import { savePlayerName, removePlayer } from "../../actions/player";
 import DoorImage from "../../assets/main/main_door.png";
 import LinkButton from "../Shared/LinkButton";
 import NormalButton from "../Shared/NormalButton";
+import Logo from "./Logo";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
+
+const scaleUp = keyframes`
+  from {
+    clip-path: polygon(0 0, 0 0, 0 0, 0 100%);
+  }
+
+  to {
+    clip-path: polygon(100% 65%, 100% 33%, 0 0, 0 100%);
+  }
+`;
 
 const Wrapper = styled.div`
   width: 800px;
@@ -30,7 +51,8 @@ const Wrapper = styled.div`
     left: 0;
     z-index: -1;
     background: rgba(255, 255, 255, 0.65);
-    clip-path: polygon(100% 65%, 100% 33%, 0 0, 0 100%);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 100%);
+    animation: ${scaleUp} 1s 3.3s forwards;
   }
 `;
 
@@ -38,22 +60,9 @@ const StartBox = styled.div`
   margin: -4rem 0 0 3rem;
 `;
 
-const Title = styled.h1`
-  margin: 0 0 3rem 0;
-  font-size: 4.2rem;
-  line-height: 3rem;
-
-  span {
-    display: block;
-
-    &:nth-child(2) {
-      margin: 0 0 0 5rem;
-    }
-
-    &:last-child {
-      margin: 0 0 0 9rem;
-    }
-  }
+const Menu = styled.div`
+  opacity: 0;
+  animation: ${fadeIn} 1s 3.5s forwards;
 `;
 
 const Input = styled.input`
@@ -85,6 +94,8 @@ const Door = styled.img`
   margin: 0 2rem 0 0;
   display: inline-block;
   align-self: center;
+  opacity: 0;
+  animation: ${fadeIn} 1.5s 3.3s forwards;
 `;
 
 function Main() {
@@ -111,7 +122,7 @@ function Main() {
 
   const renderContinueGame = () => {
     return (
-      <>
+      <Menu>
         <LinkButton
           path="/game/room/livingroom"
           color="black"
@@ -122,13 +133,13 @@ function Main() {
           color="black"
           handleClick={startNewGame}
         />
-      </>
+      </Menu>
     );
   };
 
   const renderNewGame = () => {
     return (
-      <>
+      <Menu>
         <Input
           placeholder="Your name"
           onChange={(event) => setName(event.target.value)}
@@ -139,18 +150,14 @@ function Main() {
           color="black"
           handleClick={startGame}
         />
-      </>
+      </Menu>
     );
   };
 
   return (
     <Wrapper>
       <StartBox>
-        <Title>
-          <span>Where</span>
-          <span>are</span>
-          <span>you?</span>
-        </Title>
+        <Logo />
         {playerName !== ""
           ? renderContinueGame()
           : renderNewGame()}
