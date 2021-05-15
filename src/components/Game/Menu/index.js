@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+
+import { ModalContext } from "../../../contexts/ModalContext";
+import Button from "../../Shared/NormalButton";
 
 const Content = styled.div`
   width: 400px;
@@ -15,44 +18,43 @@ const Title = styled.p`
   text-align: center;
 `;
 
-const List = styled.ul`
+const List = styled.div`
   margin: 0;
   padding: 0;
-
-  li {
-    margin: 0 0 0.5rem 0;
-    text-align: center;
-  }
-`;
-
-const Button = styled(Link)`
-  width: 200px;
-  padding: 0.5rem;
-  display: inline-block;
-  background: ${({ theme }) => theme.color.background};
-  font-size: 1.3rem;
-  transition: 0.3s all;
-
-  &:hover {
-    background: ${({ theme }) => theme.color.black};
-    color: #ffffff;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 function Menu() {
+  const { handleModal } = useContext(ModalContext);
+  const history = useHistory();
+
+  const goToMain = () => {
+    handleModal(null);
+    history.push("/");
+  };
+
+  const goToReview = () => {
+    handleModal(null);
+    history.push("/game/review");
+  };
+
   return (
     <Content>
       <Title>MENU</Title>
       <List>
-        <li>
-          <Button>메인 화면으로</Button>
-        </li>
-        <li>
-          <Button>처음부터 다시 하기</Button>
-        </li>
-        <li>
-          <Button>리뷰 보러가기</Button>
-        </li>
+        <Button
+          color="black"
+          title="메인 화면으로"
+          handleClick={goToMain}
+        />
+        <Button
+          color="black"
+          title="리뷰 보러가기"
+          handleClick={goToReview}
+        />
       </List>
     </Content>
   );
