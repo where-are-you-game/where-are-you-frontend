@@ -54,7 +54,7 @@ const Circle = styled.div`
   background: ${({ theme }) => theme.color.orange};
   border-radius: 50%;
   animation: ${scale} 2s infinite;
-  mix-blend-mode: luminosity;
+  mix-blend-mode: difference;
   opacity: 0;
 `;
 
