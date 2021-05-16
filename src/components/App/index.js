@@ -1,89 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 
-import { savePasswords } from "../../actions/password";
-import { savePuzzles } from "../../actions/puzzle";
-import { fetchPuzzles, fetchPasswords } from "../../api";
 import { ModalProvider } from "../../contexts/ModalContext";
 import GlobalStyles from "../../styles";
 import GlobalFonts from "../../styles/fonts";
 import theme from "../../styles/theme";
 import Ending from "../Ending";
 import Game from "../Game";
-import Loading from "../Loading";
 import Main from "../Main";
+import Review from "../Review";
 import NotFound from "../Shared/NotFound";
 import PrivateRoute from "../Shared/PrivateRoute";
 
 const Wrapper = styled.div``;
 
 function App() {
-  const puzzles = useSelector((state) => state.puzzle.allNames);
-  const passwords = useSelector((state) => state.password.allNames);
   const playerName = useSelector((state) => state.player.name);
   const playerPassword = useSelector((state) => state.game.playerPassword);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
-
-  const fetchData = async (apiCallback, dispatchAction) => {
-    const response = await apiCallback();
-
-    if (response.status === 200) {
-      const { data } = await response.json();
-      dispatch(dispatchAction(data));
-    }
-  };
-
-  const getPuzzlesAndPasswords = async () => {
-    if (puzzles.length > 0 && passwords.length > 0) return;
-
-    try {
-      setIsLoading(true);
-
-      await fetchData(fetchPuzzles, savePuzzles);
-      await fetchData(fetchPasswords, savePasswords);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2300);
-    }
-  };
-
-  useEffect(() => {
-    getPuzzlesAndPasswords();
-  }, []);
 
   return (
     <Wrapper>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <GlobalFonts />
-        {isLoading
-          ? <Loading />
-          : (
-            <ModalProvider>
-              <Switch>
-                <Route path="/" exact component={Main} />
-                <PrivateRoute
-                  path="/game/room/:room"
-                  isAuthenticated={Boolean(playerName !== "")}
-                  component={Game}
-                />
-                <PrivateRoute
-                  path="/game/ending"
-                  isAuthenticated={playerPassword["password5"].isUnlocked}
-                  component={Ending}
-                />
-                <Route render={(props) => <NotFound {...props} title={"404\nNot Found"} text="이런.. 존재하지 않는 페이지입니다." />}/>
-              </Switch>
-            </ModalProvider>
-          )}
+        <ModalProvider>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <PrivateRoute
+              path="/game/room/:room"
+              isAuthenticated={Boolean(playerName !== "")}
+              component={Game}
+            />
+            <PrivateRoute
+              path="/game/ending"
+              isAuthenticated={playerPassword["password5"].isUnlocked}
+              component={Ending}
+            />
+            <Route path="/review" component={Review} />
+            <Route render={(props) => <NotFound {...props} title={"404\nNot Found"} text="이런.. 존재하지 않는 페이지입니다." />}/>
+          </Switch>
+        </ModalProvider>
       </ThemeProvider>
     </Wrapper>
   );
