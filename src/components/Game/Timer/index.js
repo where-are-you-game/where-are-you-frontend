@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { countClearTime } from "../../../actions/player";
+import convertTime from "../../../utils/time";
 
 const Wrapper = styled.div`
   padding: 0.3rem 0.5rem;
@@ -29,22 +30,10 @@ function Timer() {
     }, 1000);
   }, [clearTime]);
 
-  const formatTime = (time) => {
-    return time < 10 ? `0${time}` : time;
-  };
-
-  const renderTimer = (time) => {
-    let hours = Math.floor(time / 3600);
-    let minutes = Math.floor((time - hours * 3600) / 60);
-    let seconds = time % 60;
-
-    return `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(seconds)}`;
-  };
-
   return (
     <Wrapper>
       <Label>PLAY TIME</Label>
-      {renderTimer(clearTime)}
+      {convertTime(clearTime)}
     </Wrapper>
   );
 }
