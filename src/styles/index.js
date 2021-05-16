@@ -30,10 +30,12 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export const buttonStyle = css`
-  width: 200px;
-  height: 60px;
+  width: auto;
+  height: 40px;
+  min-width: 120px;
   margin: 1rem 0 0 0;
-  display: flex;
+  padding: 0 0.5rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;

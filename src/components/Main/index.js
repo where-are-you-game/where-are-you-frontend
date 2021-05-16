@@ -61,12 +61,14 @@ const StartBox = styled.div`
 `;
 
 const Menu = styled.div`
+  display: flex;
+  flex-direction: column;
   opacity: 0;
   animation: ${fadeIn} 1s 3.5s forwards;
 `;
 
 const Input = styled.input`
-  width: 200px;
+  width: 100%;
   margin: 0 0 0.5rem 0;
   padding: 0.5rem;
   display: block;
