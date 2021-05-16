@@ -21,6 +21,7 @@ const Image = styled.div`
 `;
 
 const Title = styled.p`
+  width: 110px;
   position: absolute;
   top: 35px;
   right: 20px;
