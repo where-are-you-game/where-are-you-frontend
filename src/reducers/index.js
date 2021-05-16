@@ -6,6 +6,7 @@ import game from "./game";
 import password from "./password";
 import player from "./player";
 import puzzle from "./puzzle";
+import review from "./review";
 
 const persistConfig = {
   key: "root",
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   player,
   game,
   puzzle,
-  password
+  password,
+  review
 });
 
 export default persistReducer(persistConfig, rootReducer);

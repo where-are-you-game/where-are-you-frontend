@@ -17,3 +17,7 @@ export const removePlayer = () => ({
 export const countClearTime = () => ({
   type: type.COUNT_CLEARTIME
 });
+
+export const checkPlayerReview = () => ({
+  type: type.CHECK_PLAYER_REVIEW
+});

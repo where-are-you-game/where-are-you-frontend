@@ -2,10 +2,10 @@ import produce from "immer";
 
 import * as type from "../constants/actionTypes";
 
-
 const initialState = {
   name: "",
-  clearTime: 0
+  clearTime: 0,
+  hasReview: false
 };
 
 const player = (state = initialState, action) => {
@@ -31,6 +31,11 @@ const player = (state = initialState, action) => {
         const originTime = draft.clearTime;
         draft.clearTime = originTime + 1;
       });
+    case type.CHECK_PLAYER_REVIEW:
+      return {
+        ...state,
+        hasReview: true
+      };
     default:
       return state;
   }
