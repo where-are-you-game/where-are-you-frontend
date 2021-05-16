@@ -41,9 +41,9 @@ const Content = styled.div`
   white-space: pre-line;
 `;
 
-function View({ name, clearTime, content }) {
+function View({ name, clearTime, content, lastRef }) {
   return (
-    <Wrapper>
+    <Wrapper ref={lastRef}>
       <Info>
         <div>
           <Label>Name</Label>
@@ -62,7 +62,12 @@ function View({ name, clearTime, content }) {
 View.propTypes = {
   name: PropTypes.string.isRequired,
   clearTime: PropTypes.number.isRequired,
-  content: PropTypes.string.isRequired
+  content: PropTypes.string.isRequired,
+  lastRef: PropTypes.func
+};
+
+View.defaultProps = {
+  lastRef: null
 };
 
 export default View;

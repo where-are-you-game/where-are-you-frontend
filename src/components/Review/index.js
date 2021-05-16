@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useCallback } from "react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { fetchReviews } from "../../api";
-import Loading from "../Loading";
+import useFetchReviews from "../../hooks/useFetchReviews";
 import LinkButton from "../Shared/LinkButton";
 import View from "./View";
 import Write from "./Write";
@@ -43,26 +42,64 @@ const Notice = styled.div`
 `;
 
 function Review() {
+  const [page, setPage] = useState(1);
   const isLastPasswordUnlocked = useSelector((state) => state.game.playerPassword["password5"].isUnlocked);
-  const review = useSelector((state) => state.review);
+  const reviews = useSelector((state) => state.review.list);
+  const observer = useRef();
+  const dispatch = useDispatch();
 
-  const renderReview = () => {
-    const list = [];
+  const {
+    isLoading,
+    error,
+    hasMore
+  } = useFetchReviews(page, dispatch);
 
-    for (const id of review.allIds) {
-      list.push(review.byId[id]);
+  const lastReviewElementRef = useCallback((node) => {
+    if (isLoading) return;
+
+    if (observer.current) {
+      observer.current.disconnect();
     }
 
-    return (
-      list.map((review) => (
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && hasMore) {
+        setPage((prev) => prev + 1);
+      }
+    });
+
+    if (node) {
+      observer.current.observe(node);
+    }
+  }, [isLoading, hasMore]);
+
+  const renderReviews = () => {
+    if (reviews.length === 0) {
+      return <p>등록된 리뷰가 없습니다.</p>;
+    }
+
+    return reviews.map((review, index) => {
+      if (reviews.length === index + 1) {
+        return (
+          <View
+            lastRef={lastReviewElementRef}
+            key={review._id}
+            name={review.name}
+            clearTime={review.clearTime}
+            content={review.content}
+          />
+        );
+      }
+
+      return (
         <View
+          lastRef={null}
           key={review._id}
           name={review.name}
           clearTime={review.clearTime}
           content={review.content}
         />
-      ))
-    );
+      );
+    });
   };
 
   return (
@@ -79,7 +116,9 @@ function Review() {
       {isLastPasswordUnlocked
         ? <Write />
         : <Alert>엔딩을 본 이후에 리뷰를 남길 수 있습니다.</Alert>}
-      {renderReview()}
+      {renderReviews()}
+      {isLoading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
     </Wrapper>
   );
 }
