@@ -86,7 +86,6 @@ function Write() {
     content: ""
   });
   const [validationText, setValidationText] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleContent = (event) => {
@@ -106,26 +105,22 @@ function Write() {
     }
 
     try {
-      setIsLoading(true);
       const response = await postReview(review);
 
       if (response.status !== 200) {
-        setValidationText("리뷰 저장에 오류가 발생했습니다. 다시 시도해주세요.");
+        setValidationText("리뷰 등록에 실패하였습니다. 다시 시도해주세요.");
       }
 
       const { data } = await response.json();
       dispatch(saveReview(data));
       dispatch(checkPlayerReview());
     } catch (err) {
-      console.log(err);
-    } finally {
-      setIsLoading(false);
+      setValidationText("리뷰 등록에 실패하였습니다. 다시 시도해주세요.");
     }
   };
 
   return (
     <Wrapper>
-      {/* {isLoading && <Loading />} */}
       <Title>리뷰 남기기</Title>
       <Info>
         <div>
