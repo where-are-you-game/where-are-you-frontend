@@ -121,7 +121,7 @@ function Result() {
             {convertTime(playerInfo.clearTime)}
           </li>
         </List>
-          <Button to="/">
+          <Button to="/review">
             <span>리뷰 남기기</span>
           </Button>
           <Button to="/">
