@@ -19,3 +19,27 @@ export const fetchPasswords = async () => {
 
   return response;
 };
+
+export const fetchReviews = async () => {
+  const response = await fetch(`${API_URL}/review`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  return response;
+};
+
+export const postReview = async (review) => {
+  const response = await fetch(`${API_URL}/review`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      ...review
+    })
+  });
+
+  return response;
+};
