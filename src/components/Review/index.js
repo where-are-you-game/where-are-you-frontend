@@ -44,6 +44,7 @@ const Notice = styled.div`
 function Review() {
   const [page, setPage] = useState(1);
   const isLastPasswordUnlocked = useSelector((state) => state.game.playerPassword["password5"].isUnlocked);
+  const hasReview = useSelector((state) => state.player.hasReview);
   const reviews = useSelector((state) => state.review.list);
   const observer = useRef();
   const dispatch = useDispatch();
@@ -72,12 +73,24 @@ function Review() {
     }
   }, [isLoading, hasMore]);
 
-  const renderReviews = () => {
-    if (reviews.length === 0) {
-      return <p>등록된 리뷰가 없습니다.</p>;
+  const renderWrite = () => {
+    if (isLastPasswordUnlocked === false) {
+      return <Alert>엔딩을 본 이후에 리뷰를 남길 수 있습니다.</Alert>;
     }
 
+    if (hasReview) {
+      return <Alert>리뷰는 한 번만 작성할 수 있습니다.</Alert>;
+    }
+
+    return <Write />;
+  };
+
+  const renderReviews = () => {
     return reviews.map((review, index) => {
+      if (reviews.length === 0) {
+        return <p>등록된 리뷰가 없습니다.</p>;
+      }
+
       if (reviews.length === index + 1) {
         return (
           <View
@@ -113,9 +126,7 @@ function Review() {
         />
       </TopBox>
       <Notice>* 게임에 대한 스포일러와 비밀번호는 피해서 적어주세요!!</Notice>
-      {isLastPasswordUnlocked
-        ? <Write />
-        : <Alert>엔딩을 본 이후에 리뷰를 남길 수 있습니다.</Alert>}
+      {renderWrite()}
       {renderReviews()}
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
