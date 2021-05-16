@@ -39,6 +39,7 @@ const Content = styled.div`
   padding: 0.5rem;
   background: rgba(255, 255, 255, 0.7);
   white-space: pre-line;
+  overflow-y: auto;
 `;
 
 function View({ name, clearTime, content, lastRef }) {
