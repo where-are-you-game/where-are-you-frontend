@@ -20,8 +20,8 @@ export const fetchPasswords = async () => {
   return response;
 };
 
-export const fetchReviews = async () => {
-  const response = await fetch(`${API_URL}/review`, {
+export const fetchReviews = async (pageNumber) => {
+  const response = await fetch(`${API_URL}/review?page=${pageNumber}`, {
     headers: {
       "Content-Type": "application/json"
     }
