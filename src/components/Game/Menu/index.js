@@ -38,7 +38,7 @@ function Menu() {
 
   const goToReview = () => {
     handleModal(null);
-    history.push("/game/review");
+    history.push("/review");
   };
 
   return (
