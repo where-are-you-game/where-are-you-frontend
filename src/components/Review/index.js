@@ -59,6 +59,7 @@ function Review() {
   const isLastPasswordUnlocked = useSelector((state) => state.game.playerPassword["password5"].isUnlocked);
   const hasReview = useSelector((state) => state.player.hasReview);
   const reviews = useSelector((state) => state.review.list);
+
   const observer = useRef();
   const dispatch = useDispatch();
 

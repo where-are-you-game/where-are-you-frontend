@@ -61,9 +61,8 @@ const Result = styled.p`
 
 function Lock({ name, password, puzzleName }) {
   const [result, setResult] = useState(null);
-
+  const { answer, isUnlocked } = useSelector((state) => state.game.playerPassword[name]);
   const puzzles = useSelector((state) => state.puzzle.byName);
-  const { answer, isUnlocked} = useSelector((state) => state.game.playerPassword[name]);
   const dispatch = useDispatch();
 
   const handleAnswer = (event) => {

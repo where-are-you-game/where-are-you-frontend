@@ -75,7 +75,7 @@ function Game() {
       await fetchData(fetchPuzzles, savePuzzles);
       await fetchData(fetchPasswords, savePasswords);
     } catch (err) {
-      setError(err);
+      setError("게임 데이터를 불러올 수 없습니다.");
     } finally {
       setTimeout(() => {
         setIsLoading(false);

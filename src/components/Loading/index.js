@@ -11,6 +11,12 @@ const fadeOut = keyframes`
   }
 `;
 
+const strokeIt = keyframes`
+  to {
+    stroke-dashoffset: 0;
+  }
+`;
+
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -24,12 +30,6 @@ const Wrapper = styled.div`
   background: ${({ theme }) => theme.color.background};
   color: white;
   animation: ${fadeOut} 1s 1.5s ease-in-out forwards;
-`;
-
-const strokeIt = keyframes`
-  to {
-    stroke-dashoffset: 0;
-  }
 `;
 
 const Puzzle = styled.div`

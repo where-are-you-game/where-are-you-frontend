@@ -53,14 +53,14 @@ const Bar = styled.div`
   position: relative;
   background-size: 30px 30px;
   background-image: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.7) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(255, 255, 255, 0.7) 50%,
-      rgba(255, 255, 255, 0.7) 75%,
-      transparent 75%,
-      transparent
+    135deg,
+    rgba(255, 255, 255, 0.7) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.7) 50%,
+    rgba(255, 255, 255, 0.7) 75%,
+    transparent 75%,
+    transparent
   );
   border: 1px solid ${({ theme }) => theme.color.orange};
   animation: ${stripeAnimation} 1s linear infinite;
@@ -110,6 +110,7 @@ function ProgressBar() {
 
     for (const password in playerPassword) {
       if (password === "password5") continue;
+
       if (playerPassword[password].isUnlocked) count++;
     }
 

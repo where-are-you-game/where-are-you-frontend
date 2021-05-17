@@ -104,6 +104,7 @@ function Main() {
   const [name, setName] = useState("");
   const [validationText, setValidationText] = useState("");
   const playerName = useSelector((state) => state.player.name);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
