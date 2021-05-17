@@ -12,7 +12,7 @@ const Content = styled.div`
   padding: ${({ theme }) => theme.padding.base};
   display: grid;
   grid-template-columns: auto 350px;
-  grid-template-rows: repeat(3, minmax(250px, auto));
+  grid-template-rows: 250px 300px auto;
   position: relative;
   background: #ffffff;
 `;

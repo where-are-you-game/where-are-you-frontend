@@ -1,38 +1,41 @@
 import React from "react";
 
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const List = styled.ul`
   width: 20px;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   margin: 0;
-  padding: 3px;
+  padding: 0;
   position: absolute;
   background: #dddddd;
 
   li {
-    padding: 0 0 9px 0;
+    height: 22px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     color: ${({ theme }) => theme.color.black};
     font-size: 0.6rem;
     text-align: right;
   }
 `;
 
-function Numbers() {
+function Numbers({ line }) {
   return (
     <List>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li>10</li>
+      {Array.from({ length: line }, (_, i) => i + 1).map((number, index) => (
+        <li key={index}>{number}</li>
+      ))}
     </List>
   );
 }
+
+Numbers.propTypes = {
+  line: PropTypes.number.isRequired
+};
 
 export default Numbers;

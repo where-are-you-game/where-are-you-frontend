@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
@@ -8,21 +8,14 @@ import styled from "styled-components";
 import { changePlayerAnswer } from "../../../actions/game";
 import Numbers from "./Numbers";
 
-const Output = styled.div`
-  ${props => props.ouputStyle};
-  grid-column: 2 / 3;
-  grid-row: 1 / 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fcf9e9;
-`;
-
 const Style = styled.div`
+  height: 300px;
   position: relative;
   border: 1px solid #dddddd;
   font-family: "Anonymous Pro";
   font-size: 16px;
+  line-height: 16px;
+  overflow-y: auto;
 `;
 
 const Alert = styled.p`
@@ -34,7 +27,7 @@ const Alert = styled.p`
 
 const StyleTextarea = styled.textarea`
   width: calc(100% - 43px - 0.5rem);
-  height: 80px;
+  height: 88px;
   margin: 0 0 0 43px;
   padding: 5px;
   display: block;
@@ -60,7 +53,7 @@ const Markup = styled.div`
 
 const Pre = styled.pre`
   margin: 0 0 0 25px;
-  line-height: 1.5rem;
+  line-height: 22px;
 `;
 
 const Label = styled.span`
@@ -75,6 +68,16 @@ const Label = styled.span`
   text-align: center;
 `;
 
+const Output = styled.div`
+  ${props => props.ouputStyle};
+  grid-column: 2 / 3;
+  grid-row: 1 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fcf9e9;
+`;
+
 function Answer(props) {
   const {
     name,
@@ -86,10 +89,14 @@ function Answer(props) {
     puzzleAnswer
   } = props;
 
-  const [alert, setAlert] = useState("");
+  const [styleLines, setStyleLines] = useState(0);
+  const [markupLines, setMarkupLines] = useState(0);
+  const [alert, setAlert] = useState(null);
   const playerAnswer = useSelector(state => state.game.playerAnswer[name].answer);
   const dispatch = useDispatch();
   const outputRef = useRef();
+  const styleRef = useRef();
+  const markupRef = useRef();
 
   const handleAnswer = (event) => {
     const { value } = event.target;
@@ -105,7 +112,7 @@ function Answer(props) {
       }
     }
 
-    setAlert("");
+    setAlert(null);
   };
 
   useLayoutEffect(() => {
@@ -125,17 +132,17 @@ function Answer(props) {
     for (let i =0; i < selectedElements.length; i++) {
       selectedElements[i].style = playerAnswer;
     }
+
+    setStyleLines(Math.round(styleRef.current.scrollHeight / 22));
+    setMarkupLines(Math.round(markupRef.current.scrollHeight / 22));
   }, [playerAnswer]);
 
   return (
     <>
-      <Output ref={outputRef} ouputStyle={style}>
-        {parse(output)}
-      </Output>
-      <Style>
-        {alert !== "" && <Alert>{alert}</Alert>}
+      <Style ref={styleRef}>
+        {alert && <Alert>{alert}</Alert>}
         <Label color="red">CSS</Label>
-        <Numbers />
+        <Numbers line={styleLines} />
         <Pre>{cssBefore}</Pre>
         <StyleTextarea
           placeholder="/* Type style */"
@@ -144,11 +151,14 @@ function Answer(props) {
         />
         <Pre>{cssAfter}</Pre>
       </Style>
-      <Markup>
+      <Markup ref={markupRef}>
         <Label color="orange">HTML</Label>
-        <Numbers />
+        <Numbers line={markupLines} />
         <Pre>{markup}</Pre>
       </Markup>
+      <Output ref={outputRef} ouputStyle={style}>
+        {parse(output)}
+      </Output>
     </>
   );
 }
