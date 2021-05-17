@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import cat from "../../assets/ending/ending03.png";
 
-const Wrapper = styled.div`
+const Scene = styled.div`
   width: 500px;
   height: 960px;
   grid-column: 1 / 2;
@@ -16,8 +16,7 @@ const Wrapper = styled.div`
 
 function ThirdScene() {
   return (
-    <Wrapper>
-    </Wrapper>
+    <Scene />
   );
 }
 

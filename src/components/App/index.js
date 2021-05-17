@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSelector } from "react-redux";
 import { Switch, Route } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 
 import { ModalProvider } from "../../contexts/ModalContext";
 import GlobalStyles from "../../styles";
@@ -15,14 +15,12 @@ import Review from "../Review";
 import NotFound from "../Shared/NotFound";
 import PrivateRoute from "../Shared/PrivateRoute";
 
-const Wrapper = styled.div``;
-
 function App() {
   const playerName = useSelector((state) => state.player.name);
   const playerPassword = useSelector((state) => state.game.playerPassword);
 
   return (
-    <Wrapper>
+    <>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <GlobalFonts />
@@ -44,7 +42,7 @@ function App() {
           </Switch>
         </ModalProvider>
       </ThemeProvider>
-    </Wrapper>
+    </>
   );
 }
 

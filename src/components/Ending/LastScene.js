@@ -11,7 +11,7 @@ const showBalloon = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
+const Scene = styled.div`
   width: 500px;
   height: 341px;
   position: relative;
@@ -29,9 +29,9 @@ const Balloon = styled.img`
 
 function LastScene() {
   return (
-    <Wrapper>
+    <Scene>
       <Balloon src={balloon} alt="말풍선 이미지" />
-    </Wrapper>
+    </Scene>
   );
 }
 

@@ -18,7 +18,7 @@ const lightOn = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
+const Scene = styled.div`
   width: 600px;
   height: 420px;
   position: relative;
@@ -36,9 +36,9 @@ const Light = styled.img`
 
 function FirstScene() {
   return (
-    <Wrapper>
+    <Scene>
       <Light src={light} alt="빛 효과 이미지" />
-    </Wrapper>
+    </Scene>
   );
 }
 

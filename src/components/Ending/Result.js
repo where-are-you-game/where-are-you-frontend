@@ -36,9 +36,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Image = styled.img`
-`;
-
 const Title = styled.p`
   margin: 0 0 0.5rem 0;
   font-size: 1.7rem;
@@ -104,7 +101,7 @@ function Result() {
   return (
     <Wrapper>
       <div>
-        <Image src={keyImage} alt="결과 이미지" />
+        <img src={keyImage} alt="결과 이미지" />
       </div>
       <div>
         <Title>

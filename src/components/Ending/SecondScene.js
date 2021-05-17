@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import landscape from "../../assets/ending/ending02.png";
 
-const Wrapper = styled.div`
+const Scene = styled.div`
   width: 600px;
   height: 361px;
   position: relative;
@@ -14,8 +14,7 @@ const Wrapper = styled.div`
 
 function SecondScene() {
   return (
-    <Wrapper>
-    </Wrapper>
+    <Scene />
   );
 }
 
