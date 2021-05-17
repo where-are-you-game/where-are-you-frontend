@@ -39,8 +39,6 @@ const Label = styled.span`
   font-weight: 700;
 `;
 
-const Text = styled.span``;
-
 const TextArea = styled.textarea`
   width: 100%;
   height: 5rem;
@@ -125,11 +123,11 @@ function Write() {
       <Info>
         <div>
           <Label>Name</Label>
-          <Text>{review.name}</Text>
+          {review.name}
         </div>
         <div>
           <Label>Clear Time</Label>
-          <Text>{convertTime(review.clearTime)}</Text>
+          {convertTime(review.clearTime)}
         </div>
       </Info>
       <TextArea onChange={handleContent}></TextArea>

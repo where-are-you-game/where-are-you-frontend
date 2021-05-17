@@ -31,8 +31,8 @@ const Alert = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.3);
-  color: #ffffff;
+  background: ${({ bgColor }) => bgColor};
+  color: ${({ color }) => color};
 `;
 
 const Notice = styled.div`
@@ -75,22 +75,40 @@ function Review() {
 
   const renderWrite = () => {
     if (isLastPasswordUnlocked === false) {
-      return <Alert>엔딩을 본 이후에 리뷰를 남길 수 있습니다.</Alert>;
+      return (
+        <Alert
+          bgColor="rgba(0, 0, 0, 0.3)"
+          color="#ffffff"
+        >
+          엔딩을 본 이후에 리뷰를 남길 수 있습니다.
+        </Alert>);
     }
 
     if (hasReview) {
-      return <Alert>리뷰는 한 번만 작성할 수 있습니다.</Alert>;
+      return (
+        <Alert
+          bgColor="rgba(0, 0, 0, 0.3)"
+          color="#ffffff"
+        >
+          리뷰는 한 번만 작성할 수 있습니다.
+        </Alert>);
     }
 
     return <Write />;
   };
 
   const renderReviews = () => {
-    return reviews.map((review, index) => {
-      if (reviews.length === 0) {
-        return <p>등록된 리뷰가 없습니다.</p>;
-      }
+    if (reviews.length === 0) {
+      return (
+      <Alert
+        bgColor="#ffffff"
+        color="black"
+      >
+        등록된 리뷰가 없습니다.
+      </Alert>);
+    }
 
+    return reviews.map((review, index) => {
       if (reviews.length === index + 1) {
         return (
           <View
@@ -129,7 +147,13 @@ function Review() {
       {renderWrite()}
       {renderReviews()}
       {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && (
+        <Alert
+          bgColor="#ffffff"
+          color="black"
+        >
+          {error}
+        </Alert>)}
     </Wrapper>
   );
 }

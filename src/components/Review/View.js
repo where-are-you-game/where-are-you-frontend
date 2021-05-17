@@ -31,8 +31,6 @@ const Label = styled.span`
   font-weight: 700;
 `;
 
-const Text = styled.span``;
-
 const Content = styled.div`
   width: 100%;
   height: 5rem;
@@ -42,17 +40,24 @@ const Content = styled.div`
   overflow-y: auto;
 `;
 
-function View({ name, clearTime, content, lastRef }) {
+function View(props) {
+  const {
+    name,
+    clearTime,
+    content,
+    lastRef
+  } = props;
+
   return (
     <Wrapper ref={lastRef}>
       <Info>
         <div>
           <Label>Name</Label>
-          <Text>{name}</Text>
+          {name}
         </div>
         <div>
           <Label>Clear Time</Label>
-          <Text>{convertTime(clearTime)}</Text>
+          {convertTime(clearTime)}
         </div>
       </Info>
       <Content>{content}</Content>
