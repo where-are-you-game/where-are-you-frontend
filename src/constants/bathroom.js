@@ -5,9 +5,9 @@ import sink from "../assets/bathroom/sink.png";
 import toilet from "../assets/bathroom/toilet.png";
 import towel from "../assets/bathroom/towel.png";
 
-const CATROOM_OBJECTS = [
+const BATHROOM_ITEMS = [
   {
-    object: "bathtub",
+    name: "bathtub",
     src: bathtub,
     x: 0,
     y: 350,
@@ -16,7 +16,7 @@ const CATROOM_OBJECTS = [
     puzzle: "puzzle18"
   },
   {
-    object: "towel",
+    name: "towel",
     src: towel,
     x: 70,
     y: 180,
@@ -25,7 +25,7 @@ const CATROOM_OBJECTS = [
     puzzle: "puzzle19"
   },
   {
-    object: "sink",
+    name: "sink",
     src: sink,
     x: 240,
     y: 230,
@@ -34,7 +34,7 @@ const CATROOM_OBJECTS = [
     text: "저녁도 먹었으니 양치를 해야한다. 하지만 편지의 주인공을 찾는 게 먼저다."
   },
   {
-    object: "mirror",
+    name: "mirror",
     src: mirror,
     x: 310,
     y: 70,
@@ -43,17 +43,17 @@ const CATROOM_OBJECTS = [
     puzzle: "puzzle17"
   },
   {
-    object: "closet",
+    name: "closet",
     src: closet,
     x: 580,
     y: 50,
     width: 162,
     height: 194,
-    password: "password4",
-    puzzle: "puzzle20"
+    puzzle: "puzzle20",
+    password: "password4"
   },
   {
-    object: "toilet",
+    name: "toilet",
     src: toilet,
     x: 600,
     y: 290,
@@ -63,4 +63,4 @@ const CATROOM_OBJECTS = [
   }
 ];
 
-export default CATROOM_OBJECTS;
+export default BATHROOM_ITEMS;

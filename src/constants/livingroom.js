@@ -8,9 +8,9 @@ import plant from "../assets/livingroom/plant.png";
 import sofa from "../assets/livingroom/sofa.png";
 import table from "../assets/livingroom/table.png";
 
-const LIVIGNROOM_OBJECTS = [
+const LIVINGROOM_ITEMS = [
   {
-    object: "carpet",
+    name: "carpet",
     src: carpet,
     x: 40,
     y: 450,
@@ -20,7 +20,7 @@ const LIVIGNROOM_OBJECTS = [
     text: "줄무늬 카펫이다. 가끔씩 먼지가 날린다."
   },
   {
-    object: "door",
+    name: "door",
     src: door,
     x: 560,
     y: 50,
@@ -29,7 +29,7 @@ const LIVIGNROOM_OBJECTS = [
     password: "password5"
   },
   {
-    object: "frames",
+    name: "frames",
     src: frames,
     x: 60,
     y: 20,
@@ -38,7 +38,7 @@ const LIVIGNROOM_OBJECTS = [
     puzzle: "puzzle3"
   },
   {
-    object: "letter",
+    name: "letter",
     src: letter,
     x: 160,
     y: 390,
@@ -47,7 +47,7 @@ const LIVIGNROOM_OBJECTS = [
     puzzle: "puzzle1"
   },
   {
-    object: "plant",
+    name: "plant",
     src: plant,
     x: 470,
     y: 200,
@@ -57,23 +57,25 @@ const LIVIGNROOM_OBJECTS = [
     text: "빨간색 산세베리아. 산세베리아 중에 빨간색이 원래 있었나?"
   },
   {
-    object: "sofa",
+    name: "sofa",
     src: sofa,
     x: 50,
     y: 250,
     width: 400,
     height: 150,
-    puzzle: "puzzle2"
+    puzzle: "puzzle2",
+    overlayItems: ["letter"]
   },
   {
-    object: "table",
+    name: "table",
     src: table,
     x: 50,
     y: 382,
     width: 400,
     height: 125,
-    text: "원형 테이블이다."
+    text: "원형 테이블이다.",
+    overlayItems: ["letter"]
   }
 ];
 
-export default LIVIGNROOM_OBJECTS;
+export default LIVINGROOM_ITEMS;

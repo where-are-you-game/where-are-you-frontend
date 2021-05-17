@@ -8,39 +8,39 @@ import poster from "../assets/bedroom/poster.png";
 import puzzle from "../assets/bedroom/puzzle.png";
 import table from "../assets/bedroom/table.png";
 
-const BEDROOM_OBJECTS = [
+const BEDROOM_ITEMS = [
   {
-    object: "poster",
+    name: "poster",
     src: poster,
     x: 30,
     y: 30,
     width: 324,
     height: 210,
     puzzle: "puzzle11",
-    overlayObjects: ["bed"]
+    overlayItems: ["bed"]
   },
   {
-    object: "bed",
+    name: "bed",
     src: bed,
     x: 160,
     y: 170,
     width: 448,
     height: 400,
     puzzle: "puzzle9",
-    overlayObjects: ["desk"]
+    overlayItems: ["desk"]
   },
   {
-    object: "desk",
+    name: "desk",
     src: desk,
     x: 570,
     y: 260,
     width: 231,
     height: 264,
     text: "침대 옆에 책상이 있으면 앞에 앉을 일이 거의 없다. 반성해야지...",
-    overlayObjects: ["drawer", "lamp", "homework"]
+    overlayItems: ["drawer", "lamp", "homework"]
   },
   {
-    object: "drawer",
+    name: "drawer",
     src: drawer,
     x: 628,
     y: 363,
@@ -50,7 +50,7 @@ const BEDROOM_OBJECTS = [
     puzzle: "puzzle12"
   },
   {
-    object: "lamp",
+    name: "lamp",
     src: lampOff,
     x: 610,
     y: 143,
@@ -58,10 +58,10 @@ const BEDROOM_OBJECTS = [
     height: 157,
     detailImage: detailLamp,
     text: "낡은 스탠드. 눈이 부셔서 잘 쓰진 않는다.",
-    overlayObjects: ["homework"]
+    overlayItems: ["homework"]
   },
   {
-    object: "homework",
+    name: "homework",
     src: homework,
     x: 650,
     y: 250,
@@ -70,17 +70,17 @@ const BEDROOM_OBJECTS = [
     puzzle: "puzzle8"
   },
   {
-    object: "table",
+    name: "table",
     src: table,
     x: 30,
     y: 280,
     width: 154,
     height: 213,
     text: "보기에는 작아보이지만 튼튼한 협탁이다.",
-    overlayObjects: ["puzzle"]
+    overlayItems: ["puzzle"]
   },
   {
-    object: "puzzle",
+    name: "puzzle",
     src: puzzle,
     x: 30,
     y: 250,
@@ -90,4 +90,4 @@ const BEDROOM_OBJECTS = [
   }
 ];
 
-export default BEDROOM_OBJECTS;
+export default BEDROOM_ITEMS;
