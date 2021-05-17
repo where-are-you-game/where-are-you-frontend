@@ -21,6 +21,10 @@ const GlobalStyles = createGlobalStyle`
     &:hover {
       text-decoration: none;
     }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   ul,
