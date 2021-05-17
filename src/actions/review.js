@@ -1,8 +1,9 @@
 import * as type from "../constants/actionTypes";
 
-export const saveReviews = (reviews) => ({
+export const saveReviews = (reviews, page) => ({
   type: type.SAVE_REVIEWS,
-  reviews
+  reviews,
+  page
 });
 
 export const saveReview = (review) => ({

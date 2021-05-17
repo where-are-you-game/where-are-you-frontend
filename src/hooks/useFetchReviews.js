@@ -20,7 +20,8 @@ const useFetchReviews = (page, dispatch) => {
         }
 
         const { data } = await response.json();
-        dispatch(saveReviews(data));
+
+        dispatch(saveReviews(data, page));
         setHasMore(data.length > 0);
       } catch (err) {
         setError("리뷰를 불러올 수 없습니다. 다시 시도해주세요.");

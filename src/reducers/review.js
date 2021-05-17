@@ -3,18 +3,20 @@ import produce from "immer";
 import * as type from "../constants/actionTypes";
 
 const initialState = {
-  list: [],
-  hasFetched: false
+  list: []
 };
 
 const review = (state = initialState, action) => {
   switch (action.type) {
     case type.SAVE_REVIEWS:
       return produce(state, (draft) => {
-        if (draft.hasFetched) return;
+        let prevReviews = draft.list.slice();
 
-        draft.list = [ ...draft.list, ...action.reviews ];
-        draft.hasFetched = true;
+        if (action.page === 1) {
+          prevReviews = [];
+        }
+
+        draft.list = [ ...prevReviews, ...action.reviews ];
       });
     case type.SAVE_REVIEW:
       return produce(state, (draft) => {
