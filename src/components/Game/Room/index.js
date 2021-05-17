@@ -2,35 +2,17 @@ import React, { useContext, useCallback } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import { changeTextBox } from "../../../actions/game";
 import cursor from "../../../assets/common/search_cursor.png";
+import rooms from "../../../constants/rooms";
 import { ModalContext } from "../../../contexts/ModalContext";
 import DetailImage from "../DetailImage";
 import Lock from "../Lock";
 import SliderLock from "../SliderLock";
 import StylePuzzle from "../StylePuzzle";
-import BathRoom from "./BathRoom";
-import BedRoom from "./BedRoom";
-import CatRoom from "./CatRoom";
-import Kitchen from "./Kitchen";
-import Livingroom from "./LivingRoom";
-
-const scale = keyframes`
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(0.7)
-  }
-
-  100% {
-    transform: scale(1);
-  }
-`;
+import Canvas from "./Canvas";
 
 const Wrapper = styled.div`
   width: 800px;
@@ -45,31 +27,30 @@ const Wrapper = styled.div`
 `;
 
 const Circle = styled.div`
-  width: 80px;
-  height: 80px;
+  width: 30px;
+  height: 30px;
   position: absolute;
   top: -9999px;
   left: -9999px;
   z-index: 1;
   background: ${({ theme }) => theme.color.orange};
   border-radius: 50%;
-  animation: ${scale} 2s infinite;
   mix-blend-mode: difference;
   opacity: 0;
+  transition-duration: 0.1s all;
 `;
 
 function Room({ room }) {
   const puzzles = useSelector((state) => state.puzzle.byName);
   const passwords = useSelector((state) => state.password.byName);
-
   const { handleModal } = useContext(ModalContext);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const showText = (image) => {
     if (image.detailImage) {
-      handleModal(<DetailImage image={image.detailImage} name={image.object} text={image.text}/>);
+      handleModal(<DetailImage image={image.detailImage} name={image.name} text={image.text}/>);
     }
+
     dispatch(changeTextBox(image.text));
   };
 
@@ -106,26 +87,15 @@ function Room({ room }) {
     }
   }, []);
 
-  const renderRoom = (room) => {
-    switch (room) {
-      case "livingroom":
-        return <Livingroom runImageAction={runImageAction} />;
-      case "kitchen":
-        return <Kitchen runImageAction={runImageAction} />;
-      case "bedroom":
-        return <BedRoom runImageAction={runImageAction} />;
-      case "catroom":
-        return <CatRoom runImageAction={runImageAction} />;
-      case "bathroom":
-        return <BathRoom runImageAction={runImageAction} />;
-      default:
-        history.push("/notfound");
-    }
-  };
-
   return (
-    <Wrapper id="canvasWrapper">
-      {renderRoom(room)}
+    <Wrapper>
+      <Canvas
+        runImageAction={runImageAction}
+        room={room}
+        items={rooms[room].items}
+        leftButton={rooms[room].leftButton}
+        rightButton={rooms[room].rightButton}
+      />
       <Circle id="circle" />
     </Wrapper>
   );

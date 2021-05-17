@@ -98,9 +98,7 @@ function Game() {
               <Timer />
               <ProgressBar />
               <TodoList />
-              <Room
-                room={room}
-              />
+              <Room room={room} />
               <TextBox />
               <IconButton
                 type="button"
