@@ -1,19 +1,31 @@
 import { useEffect } from "react";
 
-import { loadImage, drawImage, runCursorAnimation } from "../utils/canvas";
+import { runCursorEffect } from "../utils/canvas";
+import Item from "../utils/canvasItem";
 
-const useCanvas = (canvasRef, images, runImageAction) => {
+const useCanvas = (canvasRef, items, runImageAction) => {
   useEffect(() => {
     (async () => {
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
+      const circle = document.getElementById("circle");
+      const drawnItems = [];
 
-      for (const image of images) {
-        const loadedImage = await loadImage(image.src);
-        await drawImage(context, loadedImage, image.x, image.y, image.width, image.height);
+      for (const item of items) {
+        const image = new Item(item);
+        await image.draw(context);
+        drawnItems.push(image);
       }
 
-      runCursorAnimation(canvas, context, images, runImageAction);
+      circle.addEventListener("click", (event) => {
+        for (const item of drawnItems) {
+          item.runEvent(drawnItems, canvas, context, event, runImageAction);
+        }
+      });
+
+      canvas.addEventListener("mousemove", (event) => {
+        runCursorEffect(circle, canvas, event, drawnItems);
+      });
     })();
   }, []);
 };
