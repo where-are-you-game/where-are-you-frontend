@@ -44,6 +44,14 @@ const TextArea = styled.textarea`
   height: 5rem;
   background: rgba(255, 255, 255, 0.5);
   resize: none;
+
+  &::placeholder {
+    color: #bbbbbb;
+  }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Bottom = styled.div`
@@ -130,7 +138,11 @@ function Write() {
           {convertTime(review.clearTime)}
         </div>
       </Info>
-      <TextArea onChange={handleContent}></TextArea>
+      <TextArea
+        placeholder="리뷰를 입력해주세요."
+        onChange={handleContent}
+        value={review.content}
+      />
       <Bottom>
         <Validation>{validationText}</Validation>
         <ButtonList>
