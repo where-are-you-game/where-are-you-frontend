@@ -3,6 +3,7 @@ import React, { useState, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import topIcon from "../../assets/common/top_icon.png";
 import useFetchReviews from "../../hooks/useFetchReviews";
 import LinkButton from "../Shared/LinkButton";
 import View from "./View";
@@ -39,6 +40,18 @@ const Notice = styled.div`
   margin: 0 0 0.3rem 0;
   color: ${({ theme }) => theme.color.red};
   font-size: 1rem;
+`;
+
+const TopButton = styled.button`
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  color: #9f716f;
+  text-align: center;
 `;
 
 function Review() {
@@ -154,6 +167,13 @@ function Review() {
         >
           {error}
         </Alert>)}
+      <TopButton
+        type="button"
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
+        <img src={topIcon} alt="위로 가기 아이콘" />
+        TOP
+      </TopButton>
     </Wrapper>
   );
 }
