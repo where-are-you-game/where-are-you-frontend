@@ -43,6 +43,7 @@ const Circle = styled.div`
 function Room({ room }) {
   const puzzles = useSelector((state) => state.puzzle.byName);
   const passwords = useSelector((state) => state.password.byName);
+
   const { handleModal } = useContext(ModalContext);
   const dispatch = useDispatch();
 
@@ -71,7 +72,7 @@ function Room({ room }) {
     handleModal(<StylePuzzle puzzle={puzzle} />);
   };
 
-  const runImageAction = useCallback((image) => {
+  const runImageAction = (image) => {
     if (image.text) {
       showText(image);
       return;
@@ -85,7 +86,7 @@ function Room({ room }) {
     if (image.puzzle) {
       showPuzzle(image);
     }
-  }, []);
+  };
 
   return (
     <Wrapper>
