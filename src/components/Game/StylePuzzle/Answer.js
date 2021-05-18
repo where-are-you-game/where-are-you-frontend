@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
@@ -18,10 +18,14 @@ const Style = styled.div`
   overflow-y: auto;
 `;
 
-const Alert = styled.p`
+const Alert = styled.div`
+  width: 100%;
+  padding: 0.3rem 0.5rem;
   position: absolute;
-  top: -20px;
-  color: ${({ theme }) => theme.color.red};
+  top: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
   font-size: 0.6rem;
 `;
 
@@ -104,12 +108,40 @@ function Answer(props) {
     checkAnswer(value);
   };
 
-  const checkAnswer = (answer) => {
-    if (answer.includes("position") || answer.includes("margin")) {
-      if (puzzleAnswer.includes("position") === false) {
-        setAlert("혹시 Element를 강제로 옮기려고 하는 거야? 다른 방법을 생각해보자. 잘 모르겠으면 HINT 버튼을 눌러봐!");
-        return;
+  const hasPropertyInAnswer = (answer, property, value = null) => {
+    if (value && answer.includes(property) && answer.includes(value)) {
+      console.log(value);
+      if (puzzleAnswer.includes(property) === false) {
+        return true;
       }
+    }
+
+    if (!value && answer.includes(property) && puzzleAnswer.includes(property) === false) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const checkAnswer = (answer) => {
+    if (hasPropertyInAnswer(answer, "position")) {
+      setAlert("혹시 Element를 강제로 옮기려고 하는 거야? 다른 방법을 생각해보자. 잘 모르겠으면 HINT 버튼을 눌러봐!");
+      return;
+    }
+
+    if (hasPropertyInAnswer(answer, "margin")) {
+      setAlert("margin을 사용하지 않는 방법이 분명히 있을텐데...");
+      return;
+    }
+
+    if (hasPropertyInAnswer(answer, "display", "none")) {
+      setAlert("설마 Element를 강제로 없애려는 건 아니지? 다른 방법을 찾아보자.");
+      return;
+    }
+
+    if (hasPropertyInAnswer(answer, "transform", "scale")) {
+      setAlert("사이즈를 줄이는 것 말고 다른 방법을 찾아보자.");
+      return;
     }
 
     setAlert(null);
