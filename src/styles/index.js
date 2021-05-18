@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
   ${ReseterCSS};
 
   body {
-    width: 100vw;
+    width: 100%;
     height: auto;
     min-height: 100vh;
     display: flex;
