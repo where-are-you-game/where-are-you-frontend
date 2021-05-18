@@ -2,6 +2,7 @@ import bathtub from "../assets/bathroom/bathtub.png";
 import closet from "../assets/bathroom/closet.png";
 import mirror from "../assets/bathroom/mirror.png";
 import sink from "../assets/bathroom/sink.png";
+import sinkWater from "../assets/bathroom/sink_water.png";
 import toilet from "../assets/bathroom/toilet.png";
 import towel from "../assets/bathroom/towel.png";
 
@@ -27,6 +28,7 @@ const BATHROOM_ITEMS = [
   {
     name: "sink",
     src: sink,
+    srcAfter: sinkWater,
     x: 240,
     y: 230,
     width: 268,
