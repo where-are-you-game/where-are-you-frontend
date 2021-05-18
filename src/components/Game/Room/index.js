@@ -1,8 +1,8 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext } from "react";
 
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { changeTextBox } from "../../../actions/game";
 import cursor from "../../../assets/common/search_cursor.png";
@@ -13,6 +13,20 @@ import Lock from "../Lock";
 import SliderLock from "../SliderLock";
 import StylePuzzle from "../StylePuzzle";
 import Canvas from "./Canvas";
+
+const scale = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
 
 const Wrapper = styled.div`
   width: 800px;
@@ -33,11 +47,17 @@ const Circle = styled.div`
   top: -9999px;
   left: -9999px;
   z-index: 1;
-  background: ${({ theme }) => theme.color.orange};
+  background: ${({ theme }) => theme.color.yellow};
   border-radius: 50%;
   mix-blend-mode: difference;
   opacity: 0;
   transition-duration: 0.1s all;
+  transform: scale(1);
+
+  &.scale {
+    background: ${({ theme }) => theme.color.orange};
+    animation: ${scale} 1s infinite;
+  }
 `;
 
 function Room({ room }) {

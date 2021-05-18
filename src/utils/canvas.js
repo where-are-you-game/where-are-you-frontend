@@ -30,6 +30,7 @@ export const runCursorEffect = (circle, canvas, event, items) => {
       circle.style.height = "70px";
       circle.style.left = `${mouseX - 35}px`;
       circle.style.top = `${mouseY - 35}px`;
+      circle.classList.add("scale");
       return;
     }
 
@@ -38,5 +39,6 @@ export const runCursorEffect = (circle, canvas, event, items) => {
     circle.style.height = "30px";
     circle.style.left = `${mouseX - 15}px`;
     circle.style.top = `${mouseY - 15}px`;
+    circle.classList.remove("scale");
   }
 };
