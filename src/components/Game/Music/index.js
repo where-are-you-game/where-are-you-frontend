@@ -37,7 +37,12 @@ function Music() {
 
   return (
     <>
-      <Audio ref={audioRef} loop>
+      <Audio
+        ref={audioRef}
+        loop
+        crossOrigin="anonymous"
+        preload="auto"
+      >
         <source src={backgroundMusic} type="audio/mp3" />
       </Audio>
       <IconButton
