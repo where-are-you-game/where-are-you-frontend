@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 import styled, { keyframes } from "styled-components";
 
@@ -63,15 +63,29 @@ const Scene = styled.div`
 `;
 
 export default function Ending() {
+  const endingRef = useRef();
+  const thirdSceneRef = useRef();
+
+  useEffect(() => {
+    const thirdSceneTop = thirdSceneRef.current.offsetTop;
+
+    setTimeout(() => {
+      window.scroll({
+        top: thirdSceneTop,
+        behavior: "smooth"
+      });
+    }, 5000);
+  }, []);
+
   return (
-    <Wrapper>
+    <Wrapper ref={endingRef}>
       <Scene>
         <FirstScene />
       </Scene>
       <Scene>
         <SecondScene />
       </Scene>
-      <Scene>
+      <Scene ref={thirdSceneRef}>
         <ThirdScene />
       </Scene>
       <Scene>
