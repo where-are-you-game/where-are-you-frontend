@@ -116,6 +116,7 @@ function Room({ room }) {
         items={rooms[room].items}
         leftButton={rooms[room].leftButton}
         rightButton={rooms[room].rightButton}
+        description={rooms[room].description}
       />
       <Circle id="circle" />
     </Wrapper>

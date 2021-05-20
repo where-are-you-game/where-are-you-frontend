@@ -31,6 +31,22 @@ const GlobalStyles = createGlobalStyle`
   ul li {
     list-style: none;
   }
+
+  input {
+    &:focus {
+      background: rgba(247, 223, 2, 0.3);
+      outline: none;
+    }
+  }
+
+  .sr-only {
+    width:1px;
+    height:1px;
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    overflow:hidden;
+  }
 `;
 
 export const buttonStyle = css`
@@ -77,6 +93,12 @@ export const buttonStyle = css`
     span {
       color: #ffffff;
     }
+  }
+
+  &:focus {
+    background: ${({ theme }) => theme.color.black};
+    outline: none;
+    color: #ffffff;
   }
 `;
 

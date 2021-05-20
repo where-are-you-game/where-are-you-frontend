@@ -8,8 +8,17 @@ const dash = keyframes`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.h1`
   width: 300px;
+  margin: 0;
+  padding: 0;
+
+  span {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    text-indent: -9999px;
+  }
 
   .cls-1,
   .cls-3,
@@ -107,6 +116,7 @@ const Wrapper = styled.div`
 function Logo() {
   return (
     <Wrapper>
+      <span>Where are you?</span>
       <svg id="레이어_1" data-name="레이어 1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 272.183 195.233">
         <defs>
           <clipPath id="clip-path" transform="translate(-45.265 -182.903)">

@@ -143,9 +143,17 @@ function Main() {
   const renderNewGame = () => {
     return (
       <Menu>
+        <label
+          htmlFor="name"
+          className="sr-only"
+        >
+          이름
+        </label>
         <Input
-          placeholder="Your name"
+          id="name"
+          placeholder="Type your name"
           onChange={(event) => setName(event.target.value)}
+          autoComplete="off"
         />
         {validationText && <Validation>{validationText}</Validation>}
         <NormalButton

@@ -16,10 +16,12 @@ const Button = styled(Link)`
   left: calc((260px + 3rem) * -1);
   background: url(${leftButton});
   font-size: 2rem;
+  transition: 0.5s all;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.color.orange};
-    transform: rotate(-7deg);
+    transform: rotate(-7deg) scale(1.1);
   }
 `;
 

@@ -119,16 +119,22 @@ function ProgressBar() {
 
   return (
     <Wrapper>
-      <Label>Unlocked</Label>
+      <Label aria-hidden="true">Unlocked</Label>
+      <p className="sr-only">
+        해제된 비밀번호 갯수: {checkUnlockedPasswords()}
+      </p>
       <Guide>
-        <li>0</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
+        <li aria-hidden="true">0</li>
+        <li aria-hidden="true">1</li>
+        <li aria-hidden="true">2</li>
+        <li aria-hidden="true">3</li>
+        <li aria-hidden="true">4</li>
       </Guide>
       <Bar unlockedPasswords={checkUnlockedPasswords()} />
-      <Alert unlockedPasswords={checkUnlockedPasswords()}>
+      <Alert
+        aria-hidden="true"
+        unlockedPasswords={checkUnlockedPasswords()}
+      >
         {checkUnlockedPasswords() === 4
           ? "TRY ESCAPE"
           : "KEEP GOING"

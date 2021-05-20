@@ -138,7 +138,14 @@ function Write() {
           {convertTime(review.clearTime)}
         </div>
       </Info>
+      <label
+        htmlFor="review"
+        className="sr-only"
+      >
+        리뷰 작성
+      </label>
       <TextArea
+        id="review"
         placeholder="리뷰를 입력해주세요."
         onChange={handleContent}
         value={review.content}

@@ -26,6 +26,7 @@ function CloseButton(props) {
   return (
     <Button
       type="button"
+      aria-label="모달 닫기"
       color={color}
       top={top}
       right={right}

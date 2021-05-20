@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -17,6 +17,11 @@ const Body = styled.div`
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.color.grey};
 
+  .swiper-container:focus {
+    outline: none;
+    border: 2px solid ${({ theme }) => theme.color.red};
+  }
+
   .swiper-container-3d .swiper-slide-shadow-left {
     background-image: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
   }
@@ -29,9 +34,38 @@ const Body = styled.div`
 const NUMBERS = Array.from(Array(10).keys());
 
 function Slider({ handleNumber, order, value }) {
+  const sliderRef = useRef();
+
+  const controlSliderWithKeyboard = (event) => {
+    const slider = sliderRef.current;
+
+    if (slider && document.activeElement === slider) {
+      if (event.key === "ArrowRight") {
+        slider.swiper.slideNext();
+        handleNumber(order, NUMBERS[slider.swiper.realIndex]);
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        slider.swiper.slidePrev();
+        handleNumber(order, NUMBERS[slider.swiper.realIndex]);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", controlSliderWithKeyboard);
+
+    return () => {
+      document.removeEventListener("keydown", controlSliderWithKeyboard);
+    };
+  }, []);
+
   return (
     <Body>
       <Swiper
+        ref={sliderRef}
+        tabIndex="0"
         className="swiper-container"
         effect="coverflow"
         loop={true}

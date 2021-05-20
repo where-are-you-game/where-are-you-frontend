@@ -21,17 +21,20 @@ const MusicInfo = styled.p`
 
 function Music() {
   const [volumeIcon, setVolumeIcon] = useState(volumeOn);
+  const [iconName, setIconName] = useState("음악 재생");
   const audioRef = useRef();
 
   const controlMusic = () => {
     if (volumeIcon === volumeOn) {
       audioRef.current.play();
       audioRef.current.muted = false;
+      setIconName("음악 멈춤");
       setVolumeIcon(volumeOff);
       return;
     }
 
     audioRef.current.muted = true;
+    setIconName("음악 재생");
     setVolumeIcon(volumeOn);
   };
 
@@ -47,6 +50,7 @@ function Music() {
       </Audio>
       <IconButton
         type="button"
+        name={iconName}
         icon={volumeIcon}
         top="40px"
         handleClick={controlMusic}

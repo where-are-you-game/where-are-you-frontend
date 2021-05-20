@@ -102,6 +102,7 @@ function Game() {
               <TextBox />
               <IconButton
                 type="button"
+                name="메뉴 보기"
                 icon={configIcon}
                 top="0px"
                 handleClick={() => handleModal(<Menu />)}

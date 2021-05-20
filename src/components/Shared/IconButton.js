@@ -17,10 +17,16 @@ const Button = styled.button`
   &:hover {
     opacity: 1;
   }
+
+  &:focus {
+    outline: 2px solid ${({ theme }) => theme.color.red};
+    opacity: 1;
+  }
 `;
 
 function IconButton(props) {
   const {
+    name,
     icon,
     top,
     handleClick
@@ -29,6 +35,7 @@ function IconButton(props) {
   return (
     <Button
       type="button"
+      aria-label={name}
       onClick={handleClick}
       icon={icon}
       top={top}
@@ -37,6 +44,7 @@ function IconButton(props) {
 }
 
 IconButton.propTypes = {
+  name: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   top: PropTypes.string.isRequired,
   handleClick: PropTypes.func.isRequired

@@ -44,6 +44,7 @@ const StyleTextarea = styled.textarea`
   }
 
   &:focus {
+    background: rgba(247, 223, 2, 0.3);
     outline: none;
   }
 `;
@@ -144,6 +145,11 @@ function Answer(props) {
       return;
     }
 
+    if (hasPropertyInAnswer(answer, "!important")) {
+      setAlert("important로 오버라이딩을 하다니.. HINT를 눌러서 다른 방법을 확인해보자.");
+      return;
+    }
+
     setAlert(null);
   };
 
@@ -176,7 +182,14 @@ function Answer(props) {
         <Label color="red">CSS</Label>
         <Numbers line={styleLines} />
         <Pre>{cssBefore}</Pre>
+        <label
+          htmlFor="styleAnswer"
+          className="sr-only"
+        >
+          정답
+        </label>
         <StyleTextarea
+          id="styleAnswer"
           placeholder="/* Type style */"
           onChange={handleAnswer}
           value={playerAnswer}

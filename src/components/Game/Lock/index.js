@@ -32,6 +32,7 @@ const Image = styled.img`
 `;
 
 const InputBox = styled.div`
+  width: 200px;
   margin: 0 0 0.5rem 0;
   display: flex;
   justify-content: space-between;
@@ -70,6 +71,12 @@ function Lock({ name, password, puzzleName }) {
     dispatch(changePlayerPassword(name, value));
   };
 
+  const submitAnswer = (event) => {
+    if (event.key === "Enter") {
+      checkAnswer();
+    }
+  };
+
   const checkAnswer = () => {
     if (answer === password) {
       dispatch(solvePassword(name));
@@ -88,12 +95,20 @@ function Lock({ name, password, puzzleName }) {
             <Title>비밀번호</Title>
             <Image src={lock} alt="자물쇠 그림" />
             <InputBox>
+              <label
+                htmlFor="password"
+                className="sr-only"
+              >
+                비밀번호
+              </label>
               <Input
                 type="text"
+                id="password"
                 name="password"
                 onChange={handleAnswer}
                 value={answer}
                 autoComplete="off"
+                onKeyPress={submitAnswer}
               />
               <Button
                 type="button"
