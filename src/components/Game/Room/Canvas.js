@@ -1,18 +1,10 @@
 import React, { useRef } from "react";
 
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import useCanvas from "../../../hooks/useCanvas";
 import LeftButton from "../../Shared/LeftButton";
 import RightButton from "../../Shared/RightButton";
-
-const Canvas = styled.canvas`
-  &:focus {
-    border: 2px solid ${({ theme }) => theme.color.red};
-    outline: none;
-  }
-`;
 
 function RoomCavnas(props) {
   const {
@@ -32,15 +24,14 @@ function RoomCavnas(props) {
     <>
       {leftButton
         && <LeftButton path={leftButton.path} text={leftButton.text} />}
-      <Canvas
+      <canvas
         ref={canvasRef}
-        tabIndex="0"
         width={800}
         height={600}
       >
         <h2>{room}</h2>
         <p className="sr-only">{description}</p>
-      </Canvas>
+      </canvas>
       {rightButton
         && <RightButton path={rightButton.path} text={rightButton.text} />}
     </>
