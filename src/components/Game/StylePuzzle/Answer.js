@@ -81,6 +81,7 @@ const Output = styled.div`
   align-items: center;
   justify-content: center;
   background: #fcf9e9;
+  user-select: none;
 `;
 
 function Answer(props) {
@@ -153,6 +154,10 @@ function Answer(props) {
     setAlert(null);
   };
 
+  const stopDragImage = (event) => {
+    event.preventDefault();
+  };
+
   useLayoutEffect(() => {
     const removeStyles = (node) => {
       node.removeAttribute("style");
@@ -169,6 +174,12 @@ function Answer(props) {
 
     for (let i =0; i < selectedElements.length; i++) {
       selectedElements[i].style = playerAnswer;
+    }
+
+    const images = outputRef.current.querySelectorAll("img");
+
+    for (let i = 0; i < images.length; i++) {
+      images[i].addEventListener("dragstart", stopDragImage);
     }
 
     setStyleLines(Math.round(styleRef.current.scrollHeight / 22));

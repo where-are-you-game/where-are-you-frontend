@@ -15,6 +15,10 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Gaegu", "Goudy Bookletter 1911", sans-serif;
   }
 
+  img {
+    user-select: none;
+  }
+
   a {
     color: ${({ theme }) => theme.color.black};
 
