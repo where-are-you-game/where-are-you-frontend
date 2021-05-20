@@ -121,7 +121,7 @@ function ProgressBar() {
     <Wrapper>
       <Label aria-hidden="true">Unlocked</Label>
       <p className="sr-only">
-        해제된 비밀번호 갯수: {checkUnlockedPasswords()}
+        해제된 비밀번호 갯수: {checkUnlockedPasswords()}개
       </p>
       <Guide>
         <li aria-hidden="true">0</li>
