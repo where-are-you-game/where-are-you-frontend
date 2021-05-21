@@ -9,7 +9,7 @@ import { changePlayerAnswer } from "../../../actions/game";
 import Numbers from "./Numbers";
 
 const Style = styled.div`
-  height: 300px;
+  height: 250px;
   position: relative;
   border: 1px solid #dddddd;
   font-family: "Anonymous Pro";
