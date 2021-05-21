@@ -81,7 +81,10 @@ const Output = styled.div`
   align-items: center;
   justify-content: center;
   background: #fcf9e9;
-  user-select: none;
+
+  > * {
+    user-select: none;
+  }
 `;
 
 function Answer(props) {
