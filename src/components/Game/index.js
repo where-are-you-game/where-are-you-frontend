@@ -12,6 +12,7 @@ import { ModalContext } from "../../contexts/ModalContext";
 import Loading from "../Loading";
 import IconButton from "../Shared/IconButton";
 import NotFound from "../Shared/NotFound";
+import Memo from "./Memo";
 import Menu from "./Menu";
 import Music from "./Music";
 import ProgressBar from "./ProgressBar";
@@ -108,6 +109,7 @@ function Game() {
                 handleClick={() => handleModal(<Menu />)}
               />
               <Music />
+              <Memo />
             </Wrapper>
           )}
     </>
