@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 
   table {
     float: right;
-    margin: -45px 0 0 0;
+    margin: -95px 0 0 0;
     padding: 0;
     border-collapse: collapse;
   }
