@@ -115,7 +115,6 @@ function Answer(props) {
 
   const hasPropertyInAnswer = (answer, property, value = null) => {
     if (value && answer.includes(property) && answer.includes(value)) {
-      console.log(value);
       if (puzzleAnswer.includes(property) === false) {
         return true;
       }
