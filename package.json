@@ -1,9 +1,12 @@
 {
-  "name": "frontend",
+  "name": "where-are-you",
   "version": "0.1.0",
   "private": true,
+  "bugs": {
+    "url": "https://github.com/where-are-you-game/where-are-you-frontend",
+    "email": "eluka22@gmail.com"
+  },
   "dependencies": {
-    "hosted-git-info": "^4.0.2",
     "html-react-parser": "^1.2.6",
     "immer": "^9.0.2",
     "react": "^17.0.2",
