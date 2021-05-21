@@ -42,6 +42,8 @@ const List = styled.ul`
   padding: 0;
 
   li {
+    font-size: 16px;
+
     span {
       width: auto;
       display: inline-block;
