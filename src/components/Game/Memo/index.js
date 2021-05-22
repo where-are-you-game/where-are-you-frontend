@@ -39,7 +39,7 @@ function Memo() {
     <Wrapper>
       <Title>MEMO</Title>
       <Textarea
-        placeholder="잊어버리면 안 되는 정보를 기록해보자."
+        placeholder="메모장"
       ></Textarea>
     </Wrapper>
   );
