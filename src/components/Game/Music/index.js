@@ -28,12 +28,14 @@ function Music() {
     if (volumeIcon === volumeOn) {
       audioRef.current.play();
       audioRef.current.muted = false;
+
       setIconName("음악 멈춤");
       setVolumeIcon(volumeOff);
       return;
     }
 
     audioRef.current.muted = true;
+
     setIconName("음악 재생");
     setVolumeIcon(volumeOn);
   };

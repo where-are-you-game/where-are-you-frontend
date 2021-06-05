@@ -25,22 +25,23 @@ function App() {
     let hasTouchScreen = false;
 
     if ("maxTouchPoints" in navigator) {
-        hasTouchScreen = navigator.maxTouchPoints > 0;
+      hasTouchScreen = navigator.maxTouchPoints > 0;
     } else if ("msMaxTouchPoints" in navigator) {
-        hasTouchScreen = navigator.msMaxTouchPoints > 0;
+      hasTouchScreen = navigator.msMaxTouchPoints > 0;
     } else {
-        const mQ = window.matchMedia && matchMedia("(pointer:coarse)");
-        if (mQ && mQ.media === "(pointer:coarse)") {
-            hasTouchScreen = !!mQ.matches;
-        } else if ("orientation" in window) {
-            hasTouchScreen = true;
-        } else {
-            const UA = navigator.userAgent;
-            hasTouchScreen = (
-                /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
-                /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
-            );
-        }
+      const mediaQuery = window.matchMedia && matchMedia("(pointer:coarse)");
+
+      if (mediaQuery && mediaQuery.media === "(pointer:coarse)") {
+        hasTouchScreen = !!mediaQuery.matches;
+      } else if ("orientation" in window) {
+        hasTouchScreen = true;
+      } else {
+        const UA = navigator.userAgent;
+        hasTouchScreen = (
+          /\b(BlackBerry|webOS|iPhone|IEMobile)\b/i.test(UA) ||
+          /\b(Android|Windows Phone|iPad|iPod)\b/i.test(UA)
+        );
+      }
     }
 
     if (hasTouchScreen) {
@@ -70,7 +71,10 @@ function App() {
                   component={Ending}
                 />
                 <Route path="/review" component={Review} />
-                <Route render={(props) => <NotFound {...props} title={"404\nNot Found"} text="이런.. 존재하지 않는 페이지입니다." />}/>
+                <Route
+                  render={(props) =>
+                    <NotFound {...props} title={"404\nNot Found"} text="이런.. 존재하지 않는 페이지입니다." />}
+                />
               </Switch>
             )}
         </ModalProvider>

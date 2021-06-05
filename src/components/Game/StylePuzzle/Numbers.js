@@ -27,9 +27,11 @@ const List = styled.ul`
 function Numbers({ line }) {
   return (
     <List>
-      {Array.from({ length: line }, (_, i) => i + 1).map((number, index) => (
-        <li key={index}>{number}</li>
-      ))}
+      {Array
+        .from({ length: line }, (_, i) => i + 1)
+        .map((number, index) => (
+          <li key={index}>{number}</li>
+        ))}
     </List>
   );
 }
