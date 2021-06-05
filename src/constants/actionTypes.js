@@ -5,7 +5,7 @@ export const REMOVE_PLAYER = "REMOVE_PLAYER";
 export const CHECK_PLAYER_REVIEW = "CHECK_PLAYER_REVIEW";
 
 export const SAVE_REVIEWS = "SAVE_REVIEWS";
-export const SAVE_REVIEW = "SAVE_REVIEW";
+export const CREATE_REVIEW = "CREATE_REVIEW";
 
 export const SAVE_PUZZLES = "SAVE_PUZZLES";
 export const SAVE_PASSWORDS = "SAVE_PASSWORDS";

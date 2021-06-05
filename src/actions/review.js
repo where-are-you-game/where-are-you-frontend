@@ -6,7 +6,7 @@ export const saveReviews = (reviews, page) => ({
   page
 });
 
-export const saveReview = (review) => ({
-  type: type.SAVE_REVIEW,
+export const createReview = (review) => ({
+  type: type.CREATE_REVIEW,
   review
 });

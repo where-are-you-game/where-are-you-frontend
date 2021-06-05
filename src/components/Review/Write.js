@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { checkPlayerReview } from "../../actions/player";
-import { saveReview } from "../../actions/review";
+import { createReview } from "../../actions/review";
 import { postReview } from "../../api";
 import convertTime from "../../utils/time";
 
@@ -118,7 +118,7 @@ function Write() {
       }
 
       const { data } = await response.json();
-      dispatch(saveReview(data));
+      dispatch(createReview(data));
       dispatch(checkPlayerReview());
     } catch (err) {
       setValidationText("리뷰 등록에 실패하였습니다. 다시 시도해주세요.");

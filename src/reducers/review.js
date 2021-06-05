@@ -18,7 +18,7 @@ const review = (state = initialState, action) => {
 
         draft.list = [ ...prevReviews, ...action.reviews ];
       });
-    case type.SAVE_REVIEW:
+    case type.CREATE_REVIEW:
       return produce(state, (draft) => {
         draft.list.unshift(action.review);
       });
