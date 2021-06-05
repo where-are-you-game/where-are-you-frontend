@@ -13,6 +13,7 @@ function NormalButton({ title, color, handleClick }) {
   return (
     <Button
       type="button"
+      name={title}
       color={color}
       onClick={handleClick}
     >
