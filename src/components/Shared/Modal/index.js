@@ -54,9 +54,13 @@ function Modal() {
     );
   };
 
-  return createPortal(
-    renderModal(),
-    document.getElementById("modal")
+  return (
+    <>
+      {createPortal(
+        renderModal(),
+        document.getElementById("modal")
+      )}
+    </>
   );
 }
 
