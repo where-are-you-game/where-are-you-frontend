@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import parse from "html-react-parser";
 import PropTypes from "prop-types";
@@ -160,7 +160,7 @@ function Answer(props) {
     event.preventDefault();
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const removeStyles = (node) => {
       node.removeAttribute("style");
 
