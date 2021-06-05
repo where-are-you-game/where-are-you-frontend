@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-const Text = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.padding.base};
   position: absolute;
@@ -11,14 +11,14 @@ const Text = styled.div`
   background: #ffffff;
 `;
 
-function Textbox() {
+function TextBox() {
   const text = useSelector(state => state.game.textBox);
 
   return (
-    <Text>
+    <Wrapper>
       {text}
-    </Text>
+    </Wrapper>
   );
 }
 
-export default Textbox;
+export default TextBox;
