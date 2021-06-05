@@ -4,7 +4,7 @@
   "private": true,
   "bugs": {
     "url": "https://github.com/where-are-you-game/where-are-you-frontend",
-    "email": "eluka22@gmail.com"
+    "email": "youlimjeon@gmail.com"
   },
   "dependencies": {
     "html-react-parser": "^1.2.6",
@@ -15,7 +15,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
-    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "reseter.css": "^1.1.3",
     "sass": "^1.32.13",
@@ -59,8 +58,12 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^13.1.9",
     "eslint-plugin-better-styled-components": "^1.1.2",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-react": "^7.23.2"
+    "eslint-plugin-react": "^7.23.2",
+    "redux-logger": "^3.0.6"
   }
 }
