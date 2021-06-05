@@ -17,7 +17,7 @@ const makeAnswer = (name, count) => {
   return result;
 };
 
-const initialState = {
+export const initialState = {
   playerAnswer: makeAnswer("puzzle", 20),
   playerPassword: makeAnswer("password", 5),
   textBox: "테이블 위에 편지가 있다. 누가 쓴 거지? 읽어봐야겠다.",
@@ -46,6 +46,7 @@ const game = (state = initialState, action) => {
       return produce(state, (draft) => {
         draft.playerAnswer = makeAnswer("puzzle", 20);
         draft.playerPassword = makeAnswer("password", 5);
+        draft.textBox = "테이블 위에 편지가 있다. 누가 쓴 거지? 읽어봐야겠다.";
       });
     default:
       return state;
