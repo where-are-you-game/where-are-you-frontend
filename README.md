@@ -6,6 +6,7 @@
 
 ## 📝 Table of Contents
 
+- [Links](#links)
 - [Introduction](#introduction)
 - [Motivation](#motivation)
 - [Reference](#reference)
@@ -16,6 +17,12 @@
 - [Reasons](#reasons)
 - [Issues](#issues)
 - [Comments](#comments)
+
+## Links
+
+- [배포 링크](https://whereareyou.fun)
+- [Frontend](https://github.com/where-are-you-game/where-are-you-frontend)
+- [Backend](https://github.com/where-are-you-game/where-are-you-backend)
 
 ## Introduction
 
