@@ -18,7 +18,7 @@ class Item {
       puzzle,
       password,
       text,
-      overlayItems
+      overlappedItems
     } = item;
 
     this.name = name;
@@ -32,7 +32,7 @@ class Item {
     this.puzzle = puzzle;
     this.password = password;
     this.text = text;
-    this.overlayItems = overlayItems;
+    this.overlappedItems = overlappedItems;
   }
 
   load() {
@@ -79,11 +79,11 @@ class Item {
     return result;
   }
 
-  checkOverlay(canvas, event, items) {
+  checkOverlap(canvas, event, items) {
     let image = this;
 
     for (let i = 0; i < items.length; i++) {
-      if (this.overlayItems.includes(items[i].name) && this.isMouseOn(canvas, event, items[i])) {
+      if (this.overlappedItems.includes(items[i].name) && this.isMouseOn(canvas, event, items[i])) {
         image = items[i];
         break;
       }
@@ -98,8 +98,8 @@ class Item {
     if (this.isMouseOn(canvas, event)) {
       this.change(context);
 
-      if (this.overlayItems) {
-        image = this.checkOverlay(canvas, event, items);
+      if (this.overlappedItems) {
+        image = this.checkOverlap(canvas, event, items);
       }
 
       callback(image);

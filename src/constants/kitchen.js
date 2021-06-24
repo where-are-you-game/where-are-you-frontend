@@ -50,7 +50,7 @@ const KITCHEN_ITEMS = [
     width: 280,
     height: 288,
     text: "부엌은 깨끗하게 청소해야 벌레가 생기지 않는다.",
-    overlayItems: ["milk", "table", "sandwich", "cuttingBoard"]
+    overlappedItems: ["milk", "table", "sandwich", "cuttingBoard"]
   },
   {
     name: "cuttingBoard",
@@ -79,7 +79,7 @@ const KITCHEN_ITEMS = [
     width: 418,
     height: 241,
     text: "파란색 냉장고와 노란색 식탁의 조합이라니. 누가 고른 색이더라?",
-    overlayItems: ["milk", "sandwich", "cup"]
+    overlappedItems: ["milk", "sandwich", "cup"]
   },
   {
     name: "milk",

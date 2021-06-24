@@ -16,7 +16,7 @@ const CATROOM_ITEMS = [
     height: 143,
     detailImage: detailWindow,
     text: "날씨가 좋아서 그런지 산책하는 강아지들이 보인다.",
-    overlayItems: ["catTower"]
+    overlappedItems: ["catTower"]
   },
   {
     name: "catTower",
@@ -36,7 +36,7 @@ const CATROOM_ITEMS = [
     height: 424,
     password: "password3",
     puzzle: "puzzle16",
-    overlayItems: ["carpet", "photo"]
+    overlappedItems: ["carpet", "photo"]
   },
   {
     name: "photo",
@@ -55,7 +55,7 @@ const CATROOM_ITEMS = [
     width: 311,
     height: 96,
     text: "생선이 그려진 카펫이다. 비록 뼈만 남아있지만...",
-    overlayItems: ["rat"]
+    overlappedItems: ["rat"]
   },
   {
     name: "rat",

@@ -17,7 +17,7 @@ const BEDROOM_ITEMS = [
     width: 324,
     height: 210,
     puzzle: "puzzle11",
-    overlayItems: ["bed"]
+    overlappedItems: ["bed"]
   },
   {
     name: "bed",
@@ -27,7 +27,7 @@ const BEDROOM_ITEMS = [
     width: 448,
     height: 400,
     puzzle: "puzzle9",
-    overlayItems: ["desk"]
+    overlappedItems: ["desk"]
   },
   {
     name: "desk",
@@ -37,7 +37,7 @@ const BEDROOM_ITEMS = [
     width: 231,
     height: 264,
     text: "침대 옆에 책상이 있으면 앞에 앉을 일이 거의 없다. 반성해야지...",
-    overlayItems: ["drawer", "lamp", "homework"]
+    overlappedItems: ["drawer", "lamp", "homework"]
   },
   {
     name: "drawer",
@@ -58,7 +58,7 @@ const BEDROOM_ITEMS = [
     height: 157,
     detailImage: detailLamp,
     text: "낡은 스탠드. 눈이 부셔서 잘 쓰진 않는다.",
-    overlayItems: ["homework"]
+    overlappedItems: ["homework"]
   },
   {
     name: "homework",
@@ -77,7 +77,7 @@ const BEDROOM_ITEMS = [
     width: 154,
     height: 213,
     text: "보기에는 작아보이지만 튼튼한 협탁이다.",
-    overlayItems: ["puzzle"]
+    overlappedItems: ["puzzle"]
   },
   {
     name: "puzzle",

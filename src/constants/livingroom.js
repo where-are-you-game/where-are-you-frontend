@@ -64,7 +64,7 @@ const LIVINGROOM_ITEMS = [
     width: 400,
     height: 150,
     puzzle: "puzzle2",
-    overlayItems: ["letter"]
+    overlappedItems: ["letter"]
   },
   {
     name: "table",
@@ -74,7 +74,7 @@ const LIVINGROOM_ITEMS = [
     width: 400,
     height: 125,
     text: "원형 테이블이다.",
-    overlayItems: ["letter"]
+    overlappedItems: ["letter"]
   }
 ];
 
