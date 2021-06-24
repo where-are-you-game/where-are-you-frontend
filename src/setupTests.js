@@ -1,7 +1,6 @@
 import React from "react";
 
 import "@testing-library/jest-dom";
-import "jest-canvas-mock";
 import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import ReactDOM from "react-dom";
